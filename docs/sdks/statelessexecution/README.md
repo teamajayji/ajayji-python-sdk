@@ -14,7 +14,7 @@ Executes a query against the currently loaded active model. Bypasses Persona par
 
 <!-- UsageSnippet language="python" operationID="ask" method="post" path="/ask" -->
 ```python
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 
 
 with SDK() as sdk:

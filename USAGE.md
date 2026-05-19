@@ -1,7 +1,7 @@
 <!-- Start SDK Example Usage [usage] -->
 ```python
 # Synchronous Example
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 
 
 with SDK() as sdk:
@@ -18,7 +18,7 @@ The same SDK client can also be used to make asynchronous requests by importing 
 
 ```python
 # Asynchronous Example
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 import asyncio
 
 async def main():

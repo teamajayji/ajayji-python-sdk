@@ -2,11 +2,11 @@
 
 import importlib.metadata
 
-__title__: str = "ajayji-sdk-test"
-__version__: str = "0.1.0"
+__title__: str = "ajayji"
+__version__: str = "0.1.1"
 __openapi_doc_version__: str = "1.0.0"
 __gen_version__: str = "2.884.4"
-__user_agent__: str = "speakeasy-sdk/python 0.1.0 2.884.4 1.0.0 ajayji-sdk-test"
+__user_agent__: str = "speakeasy-sdk/python 0.1.1 2.884.4 1.0.0 ajayji"
 
 try:
     if __package__ is not None:

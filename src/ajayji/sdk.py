@@ -5,9 +5,9 @@ from .httpclient import AsyncHttpClient, ClientOwner, HttpClient, close_clients
 from .sdkconfiguration import SDKConfiguration
 from .utils.logger import Logger, get_default_logger
 from .utils.retries import RetryConfig
-from ajayji_sdk_test import utils
-from ajayji_sdk_test._hooks import SDKHooks
-from ajayji_sdk_test.types import OptionalNullable, UNSET
+from ajayji import utils
+from ajayji._hooks import SDKHooks
+from ajayji.types import OptionalNullable, UNSET
 import httpx
 import importlib
 import sys
@@ -15,11 +15,11 @@ from typing import Dict, Optional, TYPE_CHECKING, cast
 import weakref
 
 if TYPE_CHECKING:
-    from ajayji_sdk_test.memory_management import MemoryManagement
-    from ajayji_sdk_test.model_management import ModelManagement
-    from ajayji_sdk_test.persona_orchestration import PersonaOrchestration
-    from ajayji_sdk_test.stateless_execution import StatelessExecution
-    from ajayji_sdk_test.tools_and_infrastructure import ToolsAndInfrastructure
+    from ajayji.memory_management import MemoryManagement
+    from ajayji.model_management import ModelManagement
+    from ajayji.persona_orchestration import PersonaOrchestration
+    from ajayji.stateless_execution import StatelessExecution
+    from ajayji.tools_and_infrastructure import ToolsAndInfrastructure
 
 
 class SDK(BaseSDK):
@@ -31,20 +31,17 @@ class SDK(BaseSDK):
     model_management: "ModelManagement"
     memory_management: "MemoryManagement"
     _sub_sdk_map = {
-        "stateless_execution": (
-            "ajayji_sdk_test.stateless_execution",
-            "StatelessExecution",
-        ),
+        "stateless_execution": ("ajayji.stateless_execution", "StatelessExecution"),
         "tools_and_infrastructure": (
-            "ajayji_sdk_test.tools_and_infrastructure",
+            "ajayji.tools_and_infrastructure",
             "ToolsAndInfrastructure",
         ),
         "persona_orchestration": (
-            "ajayji_sdk_test.persona_orchestration",
+            "ajayji.persona_orchestration",
             "PersonaOrchestration",
         ),
-        "model_management": ("ajayji_sdk_test.model_management", "ModelManagement"),
-        "memory_management": ("ajayji_sdk_test.memory_management", "MemoryManagement"),
+        "model_management": ("ajayji.model_management", "ModelManagement"),
+        "memory_management": ("ajayji.memory_management", "MemoryManagement"),
     }
 
     def __init__(

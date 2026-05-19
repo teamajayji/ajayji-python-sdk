@@ -5,7 +5,7 @@ from typing import Any, Optional, Type, TypeVar, overload
 import httpx
 
 from .serializers import unmarshal_json
-from ajayji_sdk_test import errors
+from ajayji import errors
 
 T = TypeVar("T")
 

@@ -4,7 +4,7 @@ import httpx
 from typing import Optional
 from dataclasses import dataclass
 
-from ajayji_sdk_test.errors import SDKError
+from ajayji.errors import SDKError
 
 
 @dataclass(unsafe_hash=True)

@@ -67,7 +67,7 @@ poetry add git+<UNSET>.git
 You can use this SDK in a Python shell with [uv](https://docs.astral.sh/uv/) and the `uvx` command that comes with it like so:
 
 ```shell
-uvx --from ajayji-sdk-test python
+uvx --from ajayji python
 ```
 
 It's also possible to write a standalone Python script without needing to set up a whole project like so:
@@ -77,11 +77,11 @@ It's also possible to write a standalone Python script without needing to set up
 # /// script
 # requires-python = ">=3.10"
 # dependencies = [
-#     "ajayji-sdk-test",
+#     "ajayji",
 # ]
 # ///
 
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 
 sdk = SDK(
   # SDK arguments
@@ -111,7 +111,7 @@ Generally, the SDK will work well with most IDEs out of the box. However, when u
 
 ```python
 # Synchronous Example
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 
 
 with SDK() as sdk:
@@ -128,7 +128,7 @@ The same SDK client can also be used to make asynchronous requests by importing 
 
 ```python
 # Asynchronous Example
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 import asyncio
 
 async def main():
@@ -181,8 +181,8 @@ Some of the endpoints in this SDK support retries. If you use the SDK without an
 
 To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call:
 ```python
-from ajayji_sdk_test import SDK
-from ajayji_sdk_test.utils import BackoffStrategy, RetryConfig
+from ajayji import SDK
+from ajayji.utils import BackoffStrategy, RetryConfig
 
 
 with SDK() as sdk:
@@ -197,8 +197,8 @@ with SDK() as sdk:
 
 If you'd like to override the default retry strategy for all operations that support retries, you can use the `retry_config` optional parameter when initializing the SDK:
 ```python
-from ajayji_sdk_test import SDK
-from ajayji_sdk_test.utils import BackoffStrategy, RetryConfig
+from ajayji import SDK
+from ajayji.utils import BackoffStrategy, RetryConfig
 
 
 with SDK(
@@ -216,7 +216,7 @@ with SDK(
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-[`SDKError`](./src/ajayji_sdk_test/errors/sdkerror.py) is the base class for all HTTP error responses. It has the following properties:
+[`SDKError`](./src/ajayji/errors/sdkerror.py) is the base class for all HTTP error responses. It has the following properties:
 
 | Property           | Type             | Description                                            |
 | ------------------ | ---------------- | ------------------------------------------------------ |
@@ -228,7 +228,7 @@ with SDK(
 
 ### Example
 ```python
-from ajayji_sdk_test import SDK, errors
+from ajayji import SDK, errors
 
 
 with SDK() as sdk:
@@ -253,7 +253,7 @@ with SDK() as sdk:
 
 ### Error Classes
 **Primary error:**
-* [`SDKError`](./src/ajayji_sdk_test/errors/sdkerror.py): The base class for HTTP error responses.
+* [`SDKError`](./src/ajayji/errors/sdkerror.py): The base class for HTTP error responses.
 
 <details><summary>Less common errors (5)</summary>
 
@@ -265,8 +265,8 @@ with SDK() as sdk:
     * [`httpx.TimeoutException`](https://www.python-httpx.org/exceptions/#httpx.TimeoutException): HTTP request timed out.
 
 
-**Inherit from [`SDKError`](./src/ajayji_sdk_test/errors/sdkerror.py)**:
-* [`ResponseValidationError`](./src/ajayji_sdk_test/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
+**Inherit from [`SDKError`](./src/ajayji/errors/sdkerror.py)**:
+* [`ResponseValidationError`](./src/ajayji/errors/responsevalidationerror.py): Type mismatch between the response data and the expected Pydantic model. Provides access to the Pydantic validation error via the `cause` attribute.
 
 </details>
 <!-- End Error Handling [errors] -->
@@ -278,7 +278,7 @@ with SDK() as sdk:
 
 The default server can be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 
 
 with SDK(
@@ -302,7 +302,7 @@ This allows you to wrap the client with your own custom logic, such as adding cu
 
 For example, you could specify a header for every request that this sdk makes as follows:
 ```python
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 import httpx
 
 http_client = httpx.Client(headers={"x-custom-header": "someValue"})
@@ -311,8 +311,8 @@ s = SDK(client=http_client)
 
 or you could wrap the client with your own custom logic:
 ```python
-from ajayji_sdk_test import SDK
-from ajayji_sdk_test.httpclient import AsyncHttpClient
+from ajayji import SDK
+from ajayji.httpclient import AsyncHttpClient
 import httpx
 
 class CustomClient(AsyncHttpClient):
@@ -382,7 +382,7 @@ The `SDK` class implements the context manager protocol and registers a finalize
 [context-manager]: https://docs.python.org/3/reference/datamodel.html#context-managers
 
 ```python
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 def main():
 
     with SDK() as sdk:
@@ -404,11 +404,11 @@ You can setup your SDK to emit debug logs for SDK requests and responses.
 
 You can pass your own logger class directly into your SDK.
 ```python
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
-s = SDK(debug_logger=logging.getLogger("ajayji_sdk_test"))
+s = SDK(debug_logger=logging.getLogger("ajayji"))
 ```
 <!-- End Debugging [debug] -->
 

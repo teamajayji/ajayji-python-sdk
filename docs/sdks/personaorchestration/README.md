@@ -14,7 +14,7 @@ Executes a full orchestration pipeline (Tools, JS Parsers, CoreML) for a specifi
 
 <!-- UsageSnippet language="python" operationID="invoke_persona" method="post" path="/personas/{id}/invoke" -->
 ```python
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 
 
 with SDK() as sdk:

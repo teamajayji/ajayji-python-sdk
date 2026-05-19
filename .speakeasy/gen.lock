@@ -5,12 +5,12 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.763.1
   generationVersion: 2.884.4
-  releaseVersion: 0.1.0
-  configChecksum: 5d720c1b57da6372264c1ae3bc1c478a
+  releaseVersion: 0.1.1
+  configChecksum: 933dd364b9110e70803296d539b2e17e
 persistentEdits:
-  generation_id: 29d5a9ae-77df-4ffa-9c8f-4f0f19c2e054
-  pristine_commit_hash: d0adc8f9255321e2f77f8fd1c6dd2c9b6611aff0
-  pristine_tree_hash: c5d61cbc2327fe14ec4f51e02a407d3ba942445d
+  generation_id: 4abcc59b-eca3-4bc1-bf76-acad3a72bbe7
+  pristine_commit_hash: a8640c51e84f51b30c55c213f4b190847fd9ec67
+  pristine_tree_hash: 15b8e3840f11f0c30bbe3e8023b54fe163005791
 features:
   python:
     additionalDependencies: 1.0.0
@@ -37,8 +37,8 @@ trackedFiles:
     pristine_git_object: 8d79f0abb72526f1fb34a4c03e5bba612c6ba2ae
   USAGE.md:
     id: 3aed33ce6e6f
-    last_write_checksum: sha1:56f39bd2e4d1ad6876340e46dd4be5c58df7c25c
-    pristine_git_object: 4f317a9cccbad5335cce73605d64793b5265e095
+    last_write_checksum: sha1:c4cd55456c46f7ea2fb25f025a54d1e960df21ed
+    pristine_git_object: 9871c1ed2ee25bba42cface9761cee2e325692ac
   docs/models/askrequestbody.md:
     id: f680e333ee7e
     last_write_checksum: sha1:9d869e5a5d27c17ece776b8c9c56a29d87781dcd
@@ -89,24 +89,24 @@ trackedFiles:
     pristine_git_object: 69dd549ec7f5f885101d08dd502e25748183aebf
   docs/sdks/memorymanagement/README.md:
     id: 506ffb8faef3
-    last_write_checksum: sha1:02f4344c68eba25284e7b708b3c2ab8e73c3a04b
-    pristine_git_object: 31d8910de3713920dc8ec14e1f2bc5ec834f6ad3
+    last_write_checksum: sha1:3b5eef21585e7b1d5310f911e8704d56be2d52eb
+    pristine_git_object: fba891ca66e59e5764535b7d6aa0d284e4af4be8
   docs/sdks/modelmanagement/README.md:
     id: 2e3b3a7c2d21
-    last_write_checksum: sha1:7bbf8af524bb032761c7ac716627cf8bc9637d34
-    pristine_git_object: be0cd53e402889e0c760e694bb2bc5c4b009e116
+    last_write_checksum: sha1:fbfadb21f65f12ae2d54341b9f839b51edd29dba
+    pristine_git_object: fb06beaac223e0bca5facdf36e36bcf727fa33bd
   docs/sdks/personaorchestration/README.md:
     id: cbdb3c6c15f4
-    last_write_checksum: sha1:c726b792336c45bc90bf87cf8a78db44be851ede
-    pristine_git_object: a765cf703b09c198a594f13a6864829bbe4d2472
+    last_write_checksum: sha1:60ba8071f4c34c6538e28654b70f12b032cab67d
+    pristine_git_object: 6412338e12800412132a2dafcf1520a2b05e1224
   docs/sdks/statelessexecution/README.md:
     id: a481385e63cb
-    last_write_checksum: sha1:0ef0516aabc2edb848fc5bce936705d0240622b9
-    pristine_git_object: 9f7968567428265a805ca7bb0c376de096de216f
+    last_write_checksum: sha1:27db914d0b127ce0f7fd7754ea6a69bde4df2ee9
+    pristine_git_object: 7b8b38ef9d896d40a37db11996c21685db716630
   docs/sdks/toolsandinfrastructure/README.md:
     id: 17465d48d1b2
-    last_write_checksum: sha1:d24ea6ce20399503d281f7f86f545209eff288ca
-    pristine_git_object: 6ce9bb73b1d6ccd040c9fb0ddf09819807bc7e29
+    last_write_checksum: sha1:dabe04b0c2eb159ea0b3a0551c39ba7ad8c180dc
+    pristine_git_object: e6191617139aaa9a256827d2058d011edbb93365
   py.typed:
     id: 258c3ed47ae4
     last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
@@ -117,198 +117,198 @@ trackedFiles:
     pristine_git_object: c00200cfd072e9febac5d6be783da1925d11dac0
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:91ed168393a404ed927aa3f372407895d40ad804
-    pristine_git_object: a894734b6c5d60e28b9c2ad20b02eb4999ade998
+    last_write_checksum: sha1:8a785c5868508804eb9d49f057894bc0a7a62e98
+    pristine_git_object: 16c06bcad22504306750e3212885a2248a9495fb
   scripts/publish.sh:
     id: fe273b08f514
     last_write_checksum: sha1:adc9b741c12ad1591ab4870eabe20f0d0a86cd1a
     pristine_git_object: ef28dc10c60d7d6a4bac0c6a1e9caba36b471861
-  src/ajayji_sdk_test/__init__.py:
-    id: 344475d68210
+  src/ajayji/__init__.py:
+    id: 74264b1482a6
     last_write_checksum: sha1:da077c0bdfcef64a4a5aea91a17292f72fa2b088
     pristine_git_object: 833c68cd526fe34aab2b7e7c45f974f7f4b9e120
-  src/ajayji_sdk_test/_hooks/__init__.py:
-    id: ff5ae02d5a85
+  src/ajayji/_hooks/__init__.py:
+    id: 8c710caaf8ce
     last_write_checksum: sha1:45a380490e968d8d95994dd97554ac60eeb6ae60
     pristine_git_object: e763be4b171bbcf9c16caeaf381f8c92ce8d8e6e
-  src/ajayji_sdk_test/_hooks/sdkhooks.py:
-    id: eb8c7f9c3688
-    last_write_checksum: sha1:5737286513c36a12e8d55ab9dd48261756c24db4
-    pristine_git_object: 4d90bec84fbe942dd0e83234390843240927683e
-  src/ajayji_sdk_test/_hooks/types.py:
-    id: b7f019bca94d
-    last_write_checksum: sha1:19147576fe44ee901eabadcc2c831dab5798e07f
-    pristine_git_object: 9d509b14de96c670fbe0e4f56e43a55d05efa7c0
-  src/ajayji_sdk_test/_version.py:
-    id: 21ec285300a4
-    last_write_checksum: sha1:901b218428e4aa5d0f6af99899c75a589ed86991
-    pristine_git_object: 114d44aafb342b07038222837349e0044235e107
-  src/ajayji_sdk_test/basesdk.py:
-    id: 006d360c0a85
-    last_write_checksum: sha1:1f71dbbda20babc55b3e09282213b793b58808fc
-    pristine_git_object: efb2cfb2ff1c31880cd5773aeb7a69bf0f458d12
-  src/ajayji_sdk_test/errors/__init__.py:
-    id: 6755ef49b05e
-    last_write_checksum: sha1:18bfee64f2fb4e2f442c340e0201ce51837b49df
-    pristine_git_object: 4bb08d049fee3963b184d60a46c8fd24e80a1172
-  src/ajayji_sdk_test/errors/no_response_error.py:
-    id: 1dbe3d1d4e7f
+  src/ajayji/_hooks/sdkhooks.py:
+    id: c8fb82e5a8b3
+    last_write_checksum: sha1:1a0f12db26288143736eac9ee1012e9d0bdb4009
+    pristine_git_object: 32ac90ebe959c07ec23287940e6f3c7dea4767aa
+  src/ajayji/_hooks/types.py:
+    id: 37bf2bbc14d1
+    last_write_checksum: sha1:cc1ac83a79b67735974c659bed6bc194275588b1
+    pristine_git_object: 984dac8c8d0b7e6fa1981a5544159267affed91e
+  src/ajayji/_version.py:
+    id: 756349a8cde0
+    last_write_checksum: sha1:ef25c43f7ed1afb6c0605fd4d9ae16cb6ae3768a
+    pristine_git_object: eb2196bbc6633842640b992131348747ae99b461
+  src/ajayji/basesdk.py:
+    id: 4fd15b606549
+    last_write_checksum: sha1:fa213ff642bd370b8a25fdf26d4de54e733088e4
+    pristine_git_object: 22545a3bba6f2afa261a94a67391cf84576b84ba
+  src/ajayji/errors/__init__.py:
+    id: 8185554a92e5
+    last_write_checksum: sha1:ae0bf1a244761cd7f2dc538d7e6490b85860f03d
+    pristine_git_object: 18e9417261b380c02352fddc13c0aeb858de18bc
+  src/ajayji/errors/no_response_error.py:
+    id: 95fc3c94a026
     last_write_checksum: sha1:7f326424a7d5ae1bcd5c89a0d6b3dbda9138942f
     pristine_git_object: 1deab64bc43e1e65bf3c412d326a4032ce342366
-  src/ajayji_sdk_test/errors/responsevalidationerror.py:
-    id: 0ab5e7e31efe
-    last_write_checksum: sha1:e225475b25f8b0383f00779e8f8e88dbd90ac42b
-    pristine_git_object: 1ec3b6e147650db163b4dcf4fd055d3d4f001e7c
-  src/ajayji_sdk_test/errors/sdkdefaulterror.py:
-    id: 39b6e5d78e3e
-    last_write_checksum: sha1:3945adcceadca158d314040d19fab94447ee33ec
-    pristine_git_object: bc87084e839d0be7100438d2e516ecc27d411219
-  src/ajayji_sdk_test/errors/sdkerror.py:
-    id: f69f94c74002
+  src/ajayji/errors/responsevalidationerror.py:
+    id: 96dbb61f40e1
+    last_write_checksum: sha1:dccd60bd801923c96c6707362bd61c5d476202a4
+    pristine_git_object: 518eea70c05422ad3c046d9b8282a3909cdcc391
+  src/ajayji/errors/sdkdefaulterror.py:
+    id: 8e88f925b092
+    last_write_checksum: sha1:e93069632e9ca1354ab77e0889168879fe225332
+    pristine_git_object: 1fedd0177cc27501b6ba17326c5c60329a7dfb3a
+  src/ajayji/errors/sdkerror.py:
+    id: 0c9ef3d95e09
     last_write_checksum: sha1:64a913063ad8d0ad31b1013fe6523221ca38c51f
     pristine_git_object: 16ac2977e80b6eabe4020aa8a21dd28e83032f9a
-  src/ajayji_sdk_test/httpclient.py:
-    id: c24e3aaf61d0
+  src/ajayji/httpclient.py:
+    id: 759bb8aa21d7
     last_write_checksum: sha1:5e55338d6ee9f01ab648cad4380201a8a3da7dd7
     pristine_git_object: 89560b566073785535643e694c112bedbd3db13d
-  src/ajayji_sdk_test/memory_management.py:
-    id: 7d90c26ab1ee
-    last_write_checksum: sha1:c2ab7da712741e8dbf2c5917b390ab2bdb0c67d2
-    pristine_git_object: ec99b80fe651fed1a498d3bf5b6a2a2668497741
-  src/ajayji_sdk_test/model_management.py:
-    id: 8162c0e68ccc
-    last_write_checksum: sha1:727f5154fc21177e37f770f3c022e86c15b690fc
-    pristine_git_object: 7b49b808420fc210bdd72bd7d03c2941c95e90b1
-  src/ajayji_sdk_test/models/__init__.py:
-    id: f72f4bf2caca
-    last_write_checksum: sha1:9c2ddbf453fa665e10c39789572de7a1ba0b0259
-    pristine_git_object: 59ab80548f003afe787ec24f3f4647d4f89c05a0
-  src/ajayji_sdk_test/models/askop.py:
-    id: 908b0348ea34
-    last_write_checksum: sha1:e6bd5e2f8889c3326c1daa614bee4ee6282f3282
-    pristine_git_object: 3f9419bd2eda79c4fb9bab1acbddc574b5e6e8c5
-  src/ajayji_sdk_test/models/create_databaseop.py:
-    id: 66a84b03cd3b
-    last_write_checksum: sha1:097086aa22df74f5a50340df4e42633a9f37be03
-    pristine_git_object: 4e581b7e728db152d55cf807da9109c5b0754969
-  src/ajayji_sdk_test/models/invoke_personaop.py:
-    id: a99795043817
-    last_write_checksum: sha1:6263c43b86ff80bd32cd2f8c17d07c66eabdc7a0
-    pristine_git_object: debe2c7862419499ca40ba3118f7d7e523a4a234
-  src/ajayji_sdk_test/models/load_modelop.py:
-    id: d0d7c15d7bcd
-    last_write_checksum: sha1:0739b97346baeba0dd8d35cc38893d47927249c1
-    pristine_git_object: 12e7d79df93d9eb0a86ed448391bb652bc252a70
-  src/ajayji_sdk_test/models/pull_modelop.py:
-    id: 8321438ce1a5
-    last_write_checksum: sha1:f30a4fc58be45ae62e2feeb93c16cf75e85eab21
-    pristine_git_object: b89cb3d6c6780d14331de282ec925e4ad36a7af8
-  src/ajayji_sdk_test/models/stop_modelop.py:
-    id: 783a063f2a43
-    last_write_checksum: sha1:02a5526fa28525e528ebae2dbd7483dd751ed83b
-    pristine_git_object: 4e1430702837a348486d34051f8deffde62c5560
-  src/ajayji_sdk_test/persona_orchestration.py:
-    id: a0f03d6201e3
-    last_write_checksum: sha1:1208408bc6da143e14386d36588b25a3c7e3cbf7
-    pristine_git_object: 1bc869b0d6863264812edfdaa31c6508d027f265
-  src/ajayji_sdk_test/py.typed:
-    id: d890f2db3d6e
+  src/ajayji/memory_management.py:
+    id: 2bc3f3298e98
+    last_write_checksum: sha1:5a5e569de043f080afab7a4f4fa39e2e45f65d16
+    pristine_git_object: a40fa60a85a6ba359b4a16f5855f98c47111410c
+  src/ajayji/model_management.py:
+    id: b8f114df0f37
+    last_write_checksum: sha1:355650f244626c6aefc58b82aa9637e1996dbad9
+    pristine_git_object: dc0c39015c9526fd353bde3c7144c7d884838705
+  src/ajayji/models/__init__.py:
+    id: 72a75b3df0b6
+    last_write_checksum: sha1:60775bc48ae08a4beb348decb0600f2c673f13e4
+    pristine_git_object: 586ccc75e6e3f64386ab429b0e3d55eab7dd810e
+  src/ajayji/models/askop.py:
+    id: 6188834751b7
+    last_write_checksum: sha1:ffc019debb70cad00fff8485439caf4cbb84aada
+    pristine_git_object: 6a2d2f1baafe7a2888261260acfb49d1b3d2490c
+  src/ajayji/models/create_databaseop.py:
+    id: ffe757e46e06
+    last_write_checksum: sha1:65fd17400f1de04bfc158e57c34d95c93a1de56e
+    pristine_git_object: d65dacc2b22b79ba6d7d60355e2fabd3ea13fb73
+  src/ajayji/models/invoke_personaop.py:
+    id: 433ac4894099
+    last_write_checksum: sha1:e985be2ec8de6d4c3011f35f8488eda21399c86f
+    pristine_git_object: 88eba455bccf659952d98251f4c66cb63fd594d1
+  src/ajayji/models/load_modelop.py:
+    id: 96f8ef943553
+    last_write_checksum: sha1:6ba2cf8139acb3e5fbe14fb143270309350179cf
+    pristine_git_object: 8fb846e0f963b8112a90759d1afb5f786a411d44
+  src/ajayji/models/pull_modelop.py:
+    id: d7b2f0b13f24
+    last_write_checksum: sha1:52573f809b0557f6eeda025be0e8f06bdc836b5d
+    pristine_git_object: bca316e147519144016c1e512c1b8bcfbc7e89ab
+  src/ajayji/models/stop_modelop.py:
+    id: 24b44cae4239
+    last_write_checksum: sha1:7c5d6e1ab0d61c9601b0ca546ac6f1edfad859c5
+    pristine_git_object: 2852ddda73f1e8e2c9f2252bba02a85dd9015944
+  src/ajayji/persona_orchestration.py:
+    id: f9370200998c
+    last_write_checksum: sha1:0dbb646565fadcc49f66af2a616da80ea5da02ed
+    pristine_git_object: 13019f1717b8c01125d8a2b173762225f4120ec9
+  src/ajayji/py.typed:
+    id: 54a48a422a7f
     last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
     pristine_git_object: 3e38f1a929f7d6b1d6de74604aa87e3d8f010544
-  src/ajayji_sdk_test/sdk.py:
-    id: 1a30feb7a006
-    last_write_checksum: sha1:8b502a67635904979616126d12ad759ac2c6daca
-    pristine_git_object: 5174f6a081d9106846b1f47e804cfca9f29aba6a
-  src/ajayji_sdk_test/sdkconfiguration.py:
-    id: 1db01ae363c3
-    last_write_checksum: sha1:07fdb78342d1c1b616a8b26b3278142ae3624415
-    pristine_git_object: be5c18ba2b45dfb8728ab4fc6b893f345f6a078a
-  src/ajayji_sdk_test/stateless_execution.py:
-    id: f9056114ea96
-    last_write_checksum: sha1:0f60c9102bef8f474f801121e80ebecf6f8896f2
-    pristine_git_object: fa3111ad21a2fa8d172199506ab0ce8fa4374cef
-  src/ajayji_sdk_test/tools_and_infrastructure.py:
-    id: a217d4fc050e
-    last_write_checksum: sha1:ee82b48441d326900da7082ac6ca67913ce93026
-    pristine_git_object: 0872b63987f81e593789e6b28ca04adeb339dd24
-  src/ajayji_sdk_test/types/__init__.py:
-    id: 0f813f71ec9d
+  src/ajayji/sdk.py:
+    id: 12aed435aa82
+    last_write_checksum: sha1:eed39ffea46ab0d3ea7a150d81722d05fd4e42f7
+    pristine_git_object: 66e640d5281a3e6685d266c1a083f8ec4c83b78c
+  src/ajayji/sdkconfiguration.py:
+    id: a47432774f31
+    last_write_checksum: sha1:540f743dd6edf63da7cd67681c122116c8c81fa0
+    pristine_git_object: b8468c9658e1cead69feb0970828386b9ec9c34a
+  src/ajayji/stateless_execution.py:
+    id: a215863f30a6
+    last_write_checksum: sha1:3ac905dc4dcc5fdf37ae782bb24596fffaef9a6f
+    pristine_git_object: 428133239c69bf2f08bf9a2932a5d94970da08f8
+  src/ajayji/tools_and_infrastructure.py:
+    id: 1567b9bed669
+    last_write_checksum: sha1:2b6023b0064db87954479dd291821770fc68d7ee
+    pristine_git_object: 5c38642e5390c4f22e8086fa58b9dcd25f5f0f02
+  src/ajayji/types/__init__.py:
+    id: ba0f3eab8daa
     last_write_checksum: sha1:140ebdd01a46f92ffc710c52c958c4eba3cf68ed
     pristine_git_object: fc76fe0c5505e29859b5d2bb707d48fd27661b8c
-  src/ajayji_sdk_test/types/basemodel.py:
-    id: 3cfd9a5420d1
+  src/ajayji/types/basemodel.py:
+    id: 2c9b6e19dd1d
     last_write_checksum: sha1:10d84aedeb9d35edfdadf2c3020caa1d24d8b584
     pristine_git_object: a9a640a1a7048736383f96c67c6290c86bf536ee
-  src/ajayji_sdk_test/utils/__init__.py:
-    id: 6be1949fd5cc
+  src/ajayji/utils/__init__.py:
+    id: c027c6c35bf5
     last_write_checksum: sha1:1970816f2234ecb8785798240b0edced961de971
     pristine_git_object: 0498cb8dabf249b39609f81fb10cddc30f1b78b5
-  src/ajayji_sdk_test/utils/annotations.py:
-    id: 6e033c03989d
+  src/ajayji/utils/annotations.py:
+    id: 6efae79501a9
     last_write_checksum: sha1:a4824ad65f730303e4e1e3ec1febf87b4eb46dbc
     pristine_git_object: 12e0aa4f1151bb52474cc02e88397329b90703f6
-  src/ajayji_sdk_test/utils/datetimes.py:
-    id: 9db725756d37
+  src/ajayji/utils/datetimes.py:
+    id: 854384a7a499
     last_write_checksum: sha1:c721e4123000e7dc61ec52b28a739439d9e17341
     pristine_git_object: a6c52cd61bbe2d459046c940ce5e8c469f2f0664
-  src/ajayji_sdk_test/utils/dynamic_imports.py:
-    id: c91e99a78b7b
+  src/ajayji/utils/dynamic_imports.py:
+    id: e184967c7f4b
     last_write_checksum: sha1:a1940c63feb8eddfd8026de53384baf5056d5dcc
     pristine_git_object: 673edf82a97d0fea7295625d3e092ea369a36b79
-  src/ajayji_sdk_test/utils/enums.py:
-    id: 408e53f14aa1
+  src/ajayji/utils/enums.py:
+    id: 5d77d90c370d
     last_write_checksum: sha1:bc8c3c1285ae09ba8a094ee5c3d9c7f41fa1284d
     pristine_git_object: 3324e1bc2668c54c4d5f5a1a845675319757a828
-  src/ajayji_sdk_test/utils/eventstreaming.py:
-    id: 32a89b83d0d0
+  src/ajayji/utils/eventstreaming.py:
+    id: ef98848fb855
     last_write_checksum: sha1:620d78a8b4e3b854e08d136e02e40a01a786bd70
     pristine_git_object: 3bdcd6d3d4fc772cb7f5fca8685dcdc8c85e13e8
-  src/ajayji_sdk_test/utils/forms.py:
-    id: 2d3fc14a57e7
+  src/ajayji/utils/forms.py:
+    id: 27757880fbdf
     last_write_checksum: sha1:0ca31459b99f761fcc6d0557a0a38daac4ad50f4
     pristine_git_object: 1e550bd5c2c35d977ddc10f49d77c23cb12c158d
-  src/ajayji_sdk_test/utils/headers.py:
-    id: b53efc7d71ac
+  src/ajayji/utils/headers.py:
+    id: 3a8ece51071b
     last_write_checksum: sha1:7c6df233ee006332b566a8afa9ce9a245941d935
     pristine_git_object: 37864cbbbc40d1a47112bbfdd3ba79568fc8818a
-  src/ajayji_sdk_test/utils/logger.py:
-    id: cff646b072ac
+  src/ajayji/utils/logger.py:
+    id: e8edcd7ef51f
     last_write_checksum: sha1:f3fdb154a3f09b8cc43d74c7e9c02f899f8086e4
     pristine_git_object: b661aff65d38b77d035149699aea09b2785d2fc6
-  src/ajayji_sdk_test/utils/metadata.py:
-    id: 6b0135993a66
+  src/ajayji/utils/metadata.py:
+    id: 463767ce639d
     last_write_checksum: sha1:e703e5cbb5255144aacf86898d1420529afaaff8
     pristine_git_object: 5abddd588837ac297050ca3b543627faadb350a9
-  src/ajayji_sdk_test/utils/queryparams.py:
-    id: ec2998cb1405
+  src/ajayji/utils/queryparams.py:
+    id: 7427d009040e
     last_write_checksum: sha1:b94c3f314fd3da0d1d215afc2731f48748e2aa59
     pristine_git_object: c04e0db82b68eca041f2cb2614d748fbac80fd41
-  src/ajayji_sdk_test/utils/requestbodies.py:
-    id: 9af40a02bc04
+  src/ajayji/utils/requestbodies.py:
+    id: 95cdcb503862
     last_write_checksum: sha1:41e2d2d2d3ecc394c8122ca4d4b85e1c3e03f054
     pristine_git_object: 1de32b6d26f46590232f398fdba6ce0072f1659c
-  src/ajayji_sdk_test/utils/retries.py:
-    id: d1b93b40bc32
+  src/ajayji/utils/retries.py:
+    id: dd9053021bf0
     last_write_checksum: sha1:471372f5c5d1dd5583239c9cf3c75f1b636e5d87
     pristine_git_object: af07d4e941007af4213c5ec9047ef8a2fca04e5e
-  src/ajayji_sdk_test/utils/security.py:
-    id: "004737221610"
+  src/ajayji/utils/security.py:
+    id: 6de3bc58be35
     last_write_checksum: sha1:c11eef495b6aaa249178c24c796940cc540b7a00
     pristine_git_object: 42d8d78e9981eed7507670014d99588e27ab325a
-  src/ajayji_sdk_test/utils/serializers.py:
-    id: 88420d13afbb
+  src/ajayji/utils/serializers.py:
+    id: 0ae55fdf0b21
     last_write_checksum: sha1:61009f2e4ef6613a1a5af813fe020373dae5a492
     pristine_git_object: d2149f8b909cb96628db140ac3cddb1b1e981367
-  src/ajayji_sdk_test/utils/unmarshal_json_response.py:
-    id: 524ba4011685
-    last_write_checksum: sha1:bc31e62a8890e6de04bcaa54bae1d703901609f7
-    pristine_git_object: 53071503ab9d8b3a9e48d6d37afcc7440ad1d682
-  src/ajayji_sdk_test/utils/url.py:
-    id: 5eea218ebcd9
+  src/ajayji/utils/unmarshal_json_response.py:
+    id: de38c0ef3ad6
+    last_write_checksum: sha1:5aa44af3e271307a7b8fef347fd44ce3726c6e4b
+    pristine_git_object: cd495d4919c5b3570f6336be1b67fd8154b8dce7
+  src/ajayji/utils/url.py:
+    id: 0abcfe66f41b
     last_write_checksum: sha1:6479961baa90432ca25626f8e40a7bbc32e73b41
     pristine_git_object: c78ccbae426ce6d385709d97ce0b1c2813ea2418
-  src/ajayji_sdk_test/utils/values.py:
-    id: bf4ba9ee637e
+  src/ajayji/utils/values.py:
+    id: 045d274e274c
     last_write_checksum: sha1:acaa178a7c41ddd000f58cc691e4632d925b2553
     pristine_git_object: dae01a44384ac3bc13ae07453a053bf6c898ebe3
 examples:

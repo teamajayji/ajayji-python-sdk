@@ -3,7 +3,7 @@
 from .sdkerror import SDKError
 from typing import Any, TYPE_CHECKING
 
-from ajayji_sdk_test.utils.dynamic_imports import lazy_getattr, lazy_dir
+from ajayji.utils.dynamic_imports import lazy_getattr, lazy_dir
 
 if TYPE_CHECKING:
     from .no_response_error import NoResponseError

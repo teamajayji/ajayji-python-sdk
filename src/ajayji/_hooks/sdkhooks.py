@@ -12,7 +12,7 @@ from .types import (
     Hooks,
 )
 from typing import List, Optional, Tuple
-from ajayji_sdk_test.httpclient import HttpClient
+from ajayji.httpclient import HttpClient
 
 
 class SDKHooks(Hooks):

@@ -15,7 +15,7 @@ Manually loads a specified model file into Mac RAM/VRAM.
 
 <!-- UsageSnippet language="python" operationID="load_model" method="post" path="/run" -->
 ```python
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 
 
 with SDK() as sdk:
@@ -52,7 +52,7 @@ Clears the active model from RAM, freeing up system resources.
 
 <!-- UsageSnippet language="python" operationID="stop_model" method="post" path="/stop" -->
 ```python
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 
 
 with SDK() as sdk:

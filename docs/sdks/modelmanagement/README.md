@@ -14,7 +14,7 @@ Triggers a background download of a model to local storage.
 
 <!-- UsageSnippet language="python" operationID="pull_model" method="post" path="/pull" -->
 ```python
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 
 
 with SDK() as sdk:

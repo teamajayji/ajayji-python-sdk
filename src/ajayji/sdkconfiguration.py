@@ -8,7 +8,7 @@ from ._version import (
 )
 from .httpclient import AsyncHttpClient, HttpClient
 from .utils import Logger, RetryConfig, remove_suffix
-from ajayji_sdk_test.types import OptionalNullable, UNSET
+from ajayji.types import OptionalNullable, UNSET
 from dataclasses import dataclass
 from pydantic import Field
 from typing import Dict, Optional, Tuple, Union

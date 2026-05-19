@@ -14,7 +14,7 @@ Ingests a CSV file into the local Sembast database and auto-provisions it as a `
 
 <!-- UsageSnippet language="python" operationID="create_database" method="post" path="/databases/create" -->
 ```python
-from ajayji_sdk_test import SDK
+from ajayji import SDK
 
 
 with SDK() as sdk:
