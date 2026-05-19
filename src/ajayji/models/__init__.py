@@ -11,11 +11,21 @@ if TYPE_CHECKING:
         AskResponseBody,
         AskResponseBodyTypedDict,
     )
+    from .convert_modelop import (
+        ConvertModelRequestBody,
+        ConvertModelRequestBodyTypedDict,
+    )
     from .create_databaseop import (
         CreateDatabaseRequestBody,
         CreateDatabaseRequestBodyTypedDict,
         CreateDatabaseResponseBody,
         CreateDatabaseResponseBodyTypedDict,
+    )
+    from .create_vector_dbop import (
+        CreateVectorDbRequestBody,
+        CreateVectorDbRequestBodyTypedDict,
+        CreateVectorDbResponseBody,
+        CreateVectorDbResponseBodyTypedDict,
     )
     from .invoke_personaop import (
         InvokePersonaRequest,
@@ -42,10 +52,16 @@ __all__ = [
     "AskRequestBodyTypedDict",
     "AskResponseBody",
     "AskResponseBodyTypedDict",
+    "ConvertModelRequestBody",
+    "ConvertModelRequestBodyTypedDict",
     "CreateDatabaseRequestBody",
     "CreateDatabaseRequestBodyTypedDict",
     "CreateDatabaseResponseBody",
     "CreateDatabaseResponseBodyTypedDict",
+    "CreateVectorDbRequestBody",
+    "CreateVectorDbRequestBodyTypedDict",
+    "CreateVectorDbResponseBody",
+    "CreateVectorDbResponseBodyTypedDict",
     "InvokePersonaRequest",
     "InvokePersonaRequestTypedDict",
     "InvokePersonaResponseBody",
@@ -67,10 +83,16 @@ _dynamic_imports: dict[str, str] = {
     "AskRequestBodyTypedDict": ".askop",
     "AskResponseBody": ".askop",
     "AskResponseBodyTypedDict": ".askop",
+    "ConvertModelRequestBody": ".convert_modelop",
+    "ConvertModelRequestBodyTypedDict": ".convert_modelop",
     "CreateDatabaseRequestBody": ".create_databaseop",
     "CreateDatabaseRequestBodyTypedDict": ".create_databaseop",
     "CreateDatabaseResponseBody": ".create_databaseop",
     "CreateDatabaseResponseBodyTypedDict": ".create_databaseop",
+    "CreateVectorDbRequestBody": ".create_vector_dbop",
+    "CreateVectorDbRequestBodyTypedDict": ".create_vector_dbop",
+    "CreateVectorDbResponseBody": ".create_vector_dbop",
+    "CreateVectorDbResponseBodyTypedDict": ".create_vector_dbop",
     "InvokePersonaRequest": ".invoke_personaop",
     "InvokePersonaRequestTypedDict": ".invoke_personaop",
     "InvokePersonaResponseBody": ".invoke_personaop",

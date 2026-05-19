@@ -8,33 +8,23 @@ from ajayji.utils.unmarshal_json_response import unmarshal_json_response
 from typing import Mapping, Optional
 
 
-class ModelManagement(BaseSDK):
-    def convert_model(
+class DataIngestionAndTools(BaseSDK):
+    def create_database(
         self,
         *,
-        input_mapping: str,
+        csv_path: str,
         name: str,
-        output_mapping: str,
-        source_file_path: str,
-        type_: str,
-        height: OptionalNullable[int] = UNSET,
-        width: OptionalNullable[int] = UNSET,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> str:
-        r"""Convert Model to CoreML
+    ) -> models.CreateDatabaseResponseBody:
+        r"""Provision a Local Database Tool
 
-        Headless conversion of a model (e.g., .h5, .pt) to an Apple CoreML `.mlpackage` via the streaming service.
+        Ingests a CSV file into the local Sembast database and auto-provisions it as a `toml-database` Tool.
 
-        :param input_mapping: The name of the input tensor/layer.
-        :param name: Name to register the resulting tool as.
-        :param output_mapping: The name of the output tensor/layer.
-        :param source_file_path: Absolute path to the source model file.
-        :param type: The type of model (e.g., 'image', 'text').
-        :param height: Target height for image models.
-        :param width: Target width for image models.
+        :param csv_path: The absolute file path to the CSV file on the local machine.
+        :param name: The human-readable name of the new database tool.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -50,19 +40,14 @@ class ModelManagement(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.ConvertModelRequestBody(
-            height=height,
-            input_mapping=input_mapping,
+        request = models.CreateDatabaseRequestBody(
+            csv_path=csv_path,
             name=name,
-            output_mapping=output_mapping,
-            source_file_path=source_file_path,
-            type=type_,
-            width=width,
         )
 
         req = self._build_request(
             method="POST",
-            path="/models/convert",
+            path="/databases/create",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -70,10 +55,10 @@ class ModelManagement(BaseSDK):
             request_has_path_params=False,
             request_has_query_params=False,
             user_agent_header="user-agent",
-            accept_header_value="text/plain",
+            accept_header_value="application/json",
             http_headers=http_headers,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.ConvertModelRequestBody
+                request, False, False, "json", models.CreateDatabaseRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -91,7 +76,7 @@ class ModelManagement(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="convert_model",
+                operation_id="create_database",
                 oauth2_scopes=None,
                 security_source=None,
             ),
@@ -100,8 +85,8 @@ class ModelManagement(BaseSDK):
             retry_config=retry_config,
         )
 
-        if utils.match_response(http_res, "200", "text/plain"):
-            return http_res.text
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.CreateDatabaseResponseBody, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
@@ -111,32 +96,22 @@ class ModelManagement(BaseSDK):
 
         raise errors.SDKDefaultError("Unexpected response received", http_res)
 
-    async def convert_model_async(
+    async def create_database_async(
         self,
         *,
-        input_mapping: str,
+        csv_path: str,
         name: str,
-        output_mapping: str,
-        source_file_path: str,
-        type_: str,
-        height: OptionalNullable[int] = UNSET,
-        width: OptionalNullable[int] = UNSET,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> str:
-        r"""Convert Model to CoreML
+    ) -> models.CreateDatabaseResponseBody:
+        r"""Provision a Local Database Tool
 
-        Headless conversion of a model (e.g., .h5, .pt) to an Apple CoreML `.mlpackage` via the streaming service.
+        Ingests a CSV file into the local Sembast database and auto-provisions it as a `toml-database` Tool.
 
-        :param input_mapping: The name of the input tensor/layer.
-        :param name: Name to register the resulting tool as.
-        :param output_mapping: The name of the output tensor/layer.
-        :param source_file_path: Absolute path to the source model file.
-        :param type: The type of model (e.g., 'image', 'text').
-        :param height: Target height for image models.
-        :param width: Target width for image models.
+        :param csv_path: The absolute file path to the CSV file on the local machine.
+        :param name: The human-readable name of the new database tool.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -152,19 +127,14 @@ class ModelManagement(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.ConvertModelRequestBody(
-            height=height,
-            input_mapping=input_mapping,
+        request = models.CreateDatabaseRequestBody(
+            csv_path=csv_path,
             name=name,
-            output_mapping=output_mapping,
-            source_file_path=source_file_path,
-            type=type_,
-            width=width,
         )
 
         req = self._build_request_async(
             method="POST",
-            path="/models/convert",
+            path="/databases/create",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -172,10 +142,10 @@ class ModelManagement(BaseSDK):
             request_has_path_params=False,
             request_has_query_params=False,
             user_agent_header="user-agent",
-            accept_header_value="text/plain",
+            accept_header_value="application/json",
             http_headers=http_headers,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.ConvertModelRequestBody
+                request, False, False, "json", models.CreateDatabaseRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -193,7 +163,7 @@ class ModelManagement(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="convert_model",
+                operation_id="create_database",
                 oauth2_scopes=None,
                 security_source=None,
             ),
@@ -202,8 +172,8 @@ class ModelManagement(BaseSDK):
             retry_config=retry_config,
         )
 
-        if utils.match_response(http_res, "200", "text/plain"):
-            return http_res.text
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.CreateDatabaseResponseBody, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
@@ -213,24 +183,22 @@ class ModelManagement(BaseSDK):
 
         raise errors.SDKDefaultError("Unexpected response received", http_res)
 
-    def pull_model(
+    def create_vector_db(
         self,
         *,
-        file_name: str,
-        repo: str,
-        huggingface_config_id: OptionalNullable[str] = UNSET,
+        folder_path: str,
+        name: str,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.PullModelResponseBody:
-        r"""Download a model from Hugging Face
+    ) -> models.CreateVectorDbResponseBody:
+        r"""Provision a Vector DB Tool
 
-        Triggers a background download of a model to local storage.
+        Indexes a local folder of documents into a Vector Database and auto-provisions it as a `toml-vector-store` Tool.
 
-        :param file_name: The exact filename to download (e.g., `model.gguf`).
-        :param repo: The Hugging Face repository (e.g., `unsloth/gemma-2b`).
-        :param huggingface_config_id: Optional ID for an authenticated Hugging Face token.
+        :param folder_path: The absolute file path to the folder containing documents to index.
+        :param name: The human-readable name of the new vector DB tool.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -246,15 +214,14 @@ class ModelManagement(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.PullModelRequestBody(
-            file_name=file_name,
-            huggingface_config_id=huggingface_config_id,
-            repo=repo,
+        request = models.CreateVectorDbRequestBody(
+            folder_path=folder_path,
+            name=name,
         )
 
         req = self._build_request(
             method="POST",
-            path="/pull",
+            path="/vector-dbs/create",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -265,7 +232,7 @@ class ModelManagement(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.PullModelRequestBody
+                request, False, False, "json", models.CreateVectorDbRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -283,7 +250,7 @@ class ModelManagement(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="pull_model",
+                operation_id="create_vector_db",
                 oauth2_scopes=None,
                 security_source=None,
             ),
@@ -293,34 +260,32 @@ class ModelManagement(BaseSDK):
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.PullModelResponseBody, http_res)
+            return unmarshal_json_response(models.CreateVectorDbResponseBody, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
-        if utils.match_response(http_res, "5XX", "*"):
+        if utils.match_response(http_res, ["500", "5XX"], "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
 
         raise errors.SDKDefaultError("Unexpected response received", http_res)
 
-    async def pull_model_async(
+    async def create_vector_db_async(
         self,
         *,
-        file_name: str,
-        repo: str,
-        huggingface_config_id: OptionalNullable[str] = UNSET,
+        folder_path: str,
+        name: str,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.PullModelResponseBody:
-        r"""Download a model from Hugging Face
+    ) -> models.CreateVectorDbResponseBody:
+        r"""Provision a Vector DB Tool
 
-        Triggers a background download of a model to local storage.
+        Indexes a local folder of documents into a Vector Database and auto-provisions it as a `toml-vector-store` Tool.
 
-        :param file_name: The exact filename to download (e.g., `model.gguf`).
-        :param repo: The Hugging Face repository (e.g., `unsloth/gemma-2b`).
-        :param huggingface_config_id: Optional ID for an authenticated Hugging Face token.
+        :param folder_path: The absolute file path to the folder containing documents to index.
+        :param name: The human-readable name of the new vector DB tool.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -336,15 +301,14 @@ class ModelManagement(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.PullModelRequestBody(
-            file_name=file_name,
-            huggingface_config_id=huggingface_config_id,
-            repo=repo,
+        request = models.CreateVectorDbRequestBody(
+            folder_path=folder_path,
+            name=name,
         )
 
         req = self._build_request_async(
             method="POST",
-            path="/pull",
+            path="/vector-dbs/create",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -355,7 +319,7 @@ class ModelManagement(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.PullModelRequestBody
+                request, False, False, "json", models.CreateVectorDbRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -373,7 +337,7 @@ class ModelManagement(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="pull_model",
+                operation_id="create_vector_db",
                 oauth2_scopes=None,
                 security_source=None,
             ),
@@ -383,11 +347,11 @@ class ModelManagement(BaseSDK):
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.PullModelResponseBody, http_res)
+            return unmarshal_json_response(models.CreateVectorDbResponseBody, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
-        if utils.match_response(http_res, "5XX", "*"):
+        if utils.match_response(http_res, ["500", "5XX"], "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
 

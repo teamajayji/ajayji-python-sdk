@@ -150,6 +150,11 @@ asyncio.run(main())
 <details open>
 <summary>Available methods</summary>
 
+### [DataIngestionAndTools](docs/sdks/dataingestionandtools/README.md)
+
+* [create_database](docs/sdks/dataingestionandtools/README.md#create_database) - Provision a Local Database Tool
+* [create_vector_db](docs/sdks/dataingestionandtools/README.md#create_vector_db) - Provision a Vector DB Tool
+
 ### [MemoryManagement](docs/sdks/memorymanagement/README.md)
 
 * [load_model](docs/sdks/memorymanagement/README.md#load_model) - Load a model into active memory
@@ -157,6 +162,7 @@ asyncio.run(main())
 
 ### [ModelManagement](docs/sdks/modelmanagement/README.md)
 
+* [convert_model](docs/sdks/modelmanagement/README.md#convert_model) - Convert Model to CoreML
 * [pull_model](docs/sdks/modelmanagement/README.md#pull_model) - Download a model from Hugging Face
 
 ### [PersonaOrchestration](docs/sdks/personaorchestration/README.md)
@@ -166,10 +172,6 @@ asyncio.run(main())
 ### [StatelessExecution](docs/sdks/statelessexecution/README.md)
 
 * [ask](docs/sdks/statelessexecution/README.md#ask) - Ask the active LLM a question statelessly
-
-### [ToolsAndInfrastructure](docs/sdks/toolsandinfrastructure/README.md)
-
-* [create_database](docs/sdks/toolsandinfrastructure/README.md#create_database) - Provision a Local Database Tool
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -282,7 +284,7 @@ from ajayji import SDK
 
 
 with SDK(
-    server_url="http://localhost:14321/api/v1",
+    server_url="http://localhost:14321",
 ) as sdk:
 
     res = sdk.stateless_execution.ask(query="<value>")

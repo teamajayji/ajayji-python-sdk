@@ -15,7 +15,7 @@ from typing import Dict, Optional, Tuple, Union
 
 
 SERVERS = [
-    "http://localhost:14321/api/v1",
+    "http://localhost:14321",
     # Default Local Ajayji Daemon
 ]
 """Contains the list of servers available to the SDK"""

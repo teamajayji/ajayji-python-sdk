@@ -15,32 +15,32 @@ from typing import Dict, Optional, TYPE_CHECKING, cast
 import weakref
 
 if TYPE_CHECKING:
+    from ajayji.data_ingestion_and_tools import DataIngestionAndTools
     from ajayji.memory_management import MemoryManagement
     from ajayji.model_management import ModelManagement
     from ajayji.persona_orchestration import PersonaOrchestration
     from ajayji.stateless_execution import StatelessExecution
-    from ajayji.tools_and_infrastructure import ToolsAndInfrastructure
 
 
 class SDK(BaseSDK):
     r"""Ajayji Local SDK API: Local daemon API for the Ajayji application, allowing native Python SDK integration for Data Scientists and developers."""
 
     stateless_execution: "StatelessExecution"
-    tools_and_infrastructure: "ToolsAndInfrastructure"
-    persona_orchestration: "PersonaOrchestration"
+    data_ingestion_and_tools: "DataIngestionAndTools"
     model_management: "ModelManagement"
+    persona_orchestration: "PersonaOrchestration"
     memory_management: "MemoryManagement"
     _sub_sdk_map = {
         "stateless_execution": ("ajayji.stateless_execution", "StatelessExecution"),
-        "tools_and_infrastructure": (
-            "ajayji.tools_and_infrastructure",
-            "ToolsAndInfrastructure",
+        "data_ingestion_and_tools": (
+            "ajayji.data_ingestion_and_tools",
+            "DataIngestionAndTools",
         ),
+        "model_management": ("ajayji.model_management", "ModelManagement"),
         "persona_orchestration": (
             "ajayji.persona_orchestration",
             "PersonaOrchestration",
         ),
-        "model_management": ("ajayji.model_management", "ModelManagement"),
         "memory_management": ("ajayji.memory_management", "MemoryManagement"),
     }
 
