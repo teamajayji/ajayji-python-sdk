@@ -1,0 +1,82 @@
+configVersion: 2.0.0
+generation:
+  sdkClassName: SDK
+  usageSnippets:
+    optionalPropertyRendering: withExample
+    sdkInitStyle: constructor
+  fixes:
+    nameResolutionFeb2025: false
+    parameterOrderingFeb2024: false
+    requestResponseComponentNamesFeb2024: false
+    securityFeb2025: false
+    sharedErrorComponentsApr2025: false
+    sharedNestedComponentsJan2026: false
+    nameOverrideFeb2026: false
+  auth:
+    oAuth2ClientCredentialsEnabled: false
+    oAuth2PasswordEnabled: false
+    hoistGlobalSecurity: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
+  versioningStrategy: automatic
+  persistentEdits: {}
+  tests:
+    generateTests: true
+    generateNewTests: false
+    skipResponseBodyAssertions: false
+python:
+  version: 0.1.0
+  additionalDependencies:
+    dev: {}
+    main: {}
+  allowedRedefinedBuiltins:
+    - id
+    - object
+    - input
+    - dir
+  asyncMode: both
+  author: ratna
+  authors:
+    - ratna
+  baseErrorName: SDKError
+  clientServerStatusCodesAsErrors: true
+  constFieldCasing: normal
+  defaultErrorName: SDKDefaultError
+  description: Python SDK for the Ajayji Local Daemon
+  enableCustomCodeRegions: false
+  enumFormat: union
+  fixFlags:
+    asyncPaginationSep2025: true
+    conflictResistantModelImportsFeb2026: true
+    responseRequiredSep2024: true
+  flattenGlobalSecurity: true
+  flattenRequests: true
+  flatteningOrder: parameters-first
+  forwardCompatibleEnumsByDefault: true
+  forwardCompatibleUnionsByDefault: tagged-only
+  imports:
+    option: openapi
+    paths:
+      callbacks: ""
+      errors: errors
+      operations: ""
+      shared: ""
+      webhooks: ""
+  inferUnionDiscriminators: true
+  inputModelSuffix: input
+  license: Apache-2.0
+  maxMethodParams: 999
+  methodArguments: infer-optional-args
+  moduleName: ""
+  multipartArrayFormat: standard
+  outputModelSuffix: output
+  packageManager: uv
+  packageName: ajayji-sdk-test
+  preApplyUnionDiscriminators: true
+  pytestFilterWarnings: []
+  pytestTimeout: 0
+  responseFormat: flat
+  sseFlatResponse: false
+  templateVersion: v2
+  useAsyncHooks: false

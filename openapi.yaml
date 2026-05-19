@@ -1,0 +1,215 @@
+openapi: 3.1.0
+info:
+  title: Ajayji Local SDK API
+  version: 1.0.0
+  description: Local daemon API for the Ajayji application, allowing native Python SDK integration for Data Scientists and developers.
+servers:
+  - url: http://localhost:14321/api/v1
+    description: Default Local Ajayji Daemon
+paths:
+  /ask:
+    post:
+      summary: Ask the active LLM a question statelessly
+      description: Executes a query against the currently loaded active model. Bypasses Persona parsing unless an agent_id is provided.
+      operationId: ask
+      tags:
+        - Stateless Execution
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+              properties:
+                query:
+                  type: string
+                  description: The prompt to send to the local model.
+                agent_id:
+                  type: string
+                  nullable: true
+                  description: Optional ID of the Persona to route this query through.
+      responses:
+        '200':
+          description: Successful response from the LLM
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+        '400':
+          description: Bad request or no model loaded
+        '500':
+          description: Internal server error
+
+  /run:
+    post:
+      summary: Load a model into active memory
+      description: Manually loads a specified model file into Mac RAM/VRAM.
+      operationId: load_model
+      tags:
+        - Memory Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - fileName
+              properties:
+                fileName:
+                  type: string
+                  description: The filename of the model (e.g. `llama-3-8b.gguf`).
+      responses:
+        '200':
+          description: Model loaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '500':
+          description: Error loading model
+
+  /stop:
+    post:
+      summary: Unload the active model from memory
+      description: Clears the active model from RAM, freeing up system resources.
+      operationId: stop_model
+      tags:
+        - Memory Management
+      responses:
+        '200':
+          description: Model unloaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '500':
+          description: Error stopping model
+
+  /personas/{id}/invoke:
+    post:
+      summary: Invoke a Persona Webhook
+      description: Executes a full orchestration pipeline (Tools, JS Parsers, CoreML) for a specific Persona using a JSON payload.
+      operationId: invoke_persona
+      tags:
+        - Persona Orchestration
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique ID of the ChatPersona to invoke.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              description: A flexible JSON payload that will be parsed by the Persona's input_parser script.
+      responses:
+        '200':
+          description: Successful workflow execution
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    additionalProperties: true
+                    description: The final parsed output from the Persona's output_parser script.
+        '400':
+          description: Bad request (e.g., payload not JSON)
+        '403':
+          description: Webhooks are disabled for this Persona
+        '404':
+          description: Persona not found
+        '500':
+          description: Internal execution error
+
+  /pull:
+    post:
+      summary: Download a model from Hugging Face
+      description: Triggers a background download of a model to local storage.
+      operationId: pull_model
+      tags:
+        - Model Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - repo
+                - fileName
+              properties:
+                repo:
+                  type: string
+                  description: The Hugging Face repository (e.g., `unsloth/gemma-2b`).
+                fileName:
+                  type: string
+                  description: The exact filename to download (e.g., `model.gguf`).
+                huggingface_config_id:
+                  type: string
+                  nullable: true
+                  description: Optional ID for an authenticated Hugging Face token.
+      responses:
+        '200':
+          description: Download started successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+
+  /databases/create:
+    post:
+      summary: Provision a Local Database Tool
+      description: Ingests a CSV file into the local Sembast database and auto-provisions it as a `toml-database` Tool.
+      operationId: create_database
+      tags:
+        - Tools & Infrastructure
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - csv_path
+              properties:
+                name:
+                  type: string
+                  description: The human-readable name of the new database tool.
+                csv_path:
+                  type: string
+                  description: The absolute file path to the CSV file on the local machine.
+      responses:
+        '200':
+          description: Database created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '500':
+          description: Internal server error
