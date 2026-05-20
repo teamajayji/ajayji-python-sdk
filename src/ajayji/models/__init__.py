@@ -27,6 +27,7 @@ if TYPE_CHECKING:
         CreateVectorDbResponseBody,
         CreateVectorDbResponseBodyTypedDict,
     )
+    from .execute_toolop import ExecuteToolRequestBody, ExecuteToolRequestBodyTypedDict
     from .invoke_personaop import (
         InvokePersonaRequest,
         InvokePersonaRequestTypedDict,
@@ -62,6 +63,8 @@ __all__ = [
     "CreateVectorDbRequestBodyTypedDict",
     "CreateVectorDbResponseBody",
     "CreateVectorDbResponseBodyTypedDict",
+    "ExecuteToolRequestBody",
+    "ExecuteToolRequestBodyTypedDict",
     "InvokePersonaRequest",
     "InvokePersonaRequestTypedDict",
     "InvokePersonaResponseBody",
@@ -93,6 +96,8 @@ _dynamic_imports: dict[str, str] = {
     "CreateVectorDbRequestBodyTypedDict": ".create_vector_dbop",
     "CreateVectorDbResponseBody": ".create_vector_dbop",
     "CreateVectorDbResponseBodyTypedDict": ".create_vector_dbop",
+    "ExecuteToolRequestBody": ".execute_toolop",
+    "ExecuteToolRequestBodyTypedDict": ".execute_toolop",
     "InvokePersonaRequest": ".invoke_personaop",
     "InvokePersonaRequestTypedDict": ".invoke_personaop",
     "InvokePersonaResponseBody": ".invoke_personaop",

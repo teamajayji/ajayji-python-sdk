@@ -8,6 +8,8 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class CreateVectorDbRequestBodyTypedDict(TypedDict):
+    embedding_model: str
+    r"""The filename of the active GGUF model to use for embeddings (e.g. `all-MiniLM-L6-v2-gguf.gguf`)."""
     folder_path: str
     r"""The absolute file path to the folder containing documents to index."""
     name: str
@@ -15,6 +17,9 @@ class CreateVectorDbRequestBodyTypedDict(TypedDict):
 
 
 class CreateVectorDbRequestBody(BaseModel):
+    embedding_model: str
+    r"""The filename of the active GGUF model to use for embeddings (e.g. `all-MiniLM-L6-v2-gguf.gguf`)."""
+
     folder_path: str
     r"""The absolute file path to the folder containing documents to index."""
 

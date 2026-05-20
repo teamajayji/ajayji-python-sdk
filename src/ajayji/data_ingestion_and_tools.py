@@ -5,7 +5,7 @@ from ajayji import errors, models, utils
 from ajayji._hooks import HookContext
 from ajayji.types import OptionalNullable, UNSET
 from ajayji.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Mapping, Optional
+from typing import Any, Dict, Mapping, Optional
 
 
 class DataIngestionAndTools(BaseSDK):
@@ -186,6 +186,7 @@ class DataIngestionAndTools(BaseSDK):
     def create_vector_db(
         self,
         *,
+        embedding_model: str,
         folder_path: str,
         name: str,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -197,6 +198,7 @@ class DataIngestionAndTools(BaseSDK):
 
         Indexes a local folder of documents into a Vector Database and auto-provisions it as a `toml-vector-store` Tool.
 
+        :param embedding_model: The filename of the active GGUF model to use for embeddings (e.g. `all-MiniLM-L6-v2-gguf.gguf`).
         :param folder_path: The absolute file path to the folder containing documents to index.
         :param name: The human-readable name of the new vector DB tool.
         :param retries: Override the default retry configuration for this method
@@ -215,6 +217,7 @@ class DataIngestionAndTools(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CreateVectorDbRequestBody(
+            embedding_model=embedding_model,
             folder_path=folder_path,
             name=name,
         )
@@ -273,6 +276,7 @@ class DataIngestionAndTools(BaseSDK):
     async def create_vector_db_async(
         self,
         *,
+        embedding_model: str,
         folder_path: str,
         name: str,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -284,6 +288,7 @@ class DataIngestionAndTools(BaseSDK):
 
         Indexes a local folder of documents into a Vector Database and auto-provisions it as a `toml-vector-store` Tool.
 
+        :param embedding_model: The filename of the active GGUF model to use for embeddings (e.g. `all-MiniLM-L6-v2-gguf.gguf`).
         :param folder_path: The absolute file path to the folder containing documents to index.
         :param name: The human-readable name of the new vector DB tool.
         :param retries: Override the default retry configuration for this method
@@ -302,6 +307,7 @@ class DataIngestionAndTools(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CreateVectorDbRequestBody(
+            embedding_model=embedding_model,
             folder_path=folder_path,
             name=name,
         )
@@ -349,6 +355,180 @@ class DataIngestionAndTools(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.CreateVectorDbResponseBody, http_res)
         if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
+        if utils.match_response(http_res, ["500", "5XX"], "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
+
+        raise errors.SDKDefaultError("Unexpected response received", http_res)
+
+    def execute_tool(
+        self,
+        *,
+        tool_name: str,
+        args: Optional[Dict[str, Any]] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> Dict[str, Any]:
+        r"""Execute a Tool Statelessly
+
+        Programmatically executes a registered tool (e.g. Database, Vector Store, CoreML model) and returns the JSON result.
+
+        :param tool_name: The registered name of the tool to execute.
+        :param args: A JSON object containing the arguments required by the tool.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ExecuteToolRequestBody(
+            args=args,
+            tool_name=tool_name,
+        )
+
+        req = self._build_request(
+            method="POST",
+            path="/tools/execute",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=False,
+            request_has_query_params=False,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", models.ExecuteToolRequestBody
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="execute_tool",
+                oauth2_scopes=None,
+                security_source=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(Dict[str, Any], http_res)
+        if utils.match_response(http_res, ["400", "404", "4XX"], "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
+        if utils.match_response(http_res, ["500", "5XX"], "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
+
+        raise errors.SDKDefaultError("Unexpected response received", http_res)
+
+    async def execute_tool_async(
+        self,
+        *,
+        tool_name: str,
+        args: Optional[Dict[str, Any]] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> Dict[str, Any]:
+        r"""Execute a Tool Statelessly
+
+        Programmatically executes a registered tool (e.g. Database, Vector Store, CoreML model) and returns the JSON result.
+
+        :param tool_name: The registered name of the tool to execute.
+        :param args: A JSON object containing the arguments required by the tool.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ExecuteToolRequestBody(
+            args=args,
+            tool_name=tool_name,
+        )
+
+        req = self._build_request_async(
+            method="POST",
+            path="/tools/execute",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=False,
+            request_has_query_params=False,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", models.ExecuteToolRequestBody
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="execute_tool",
+                oauth2_scopes=None,
+                security_source=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(Dict[str, Any], http_res)
+        if utils.match_response(http_res, ["400", "404", "4XX"], "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
         if utils.match_response(http_res, ["500", "5XX"], "*"):

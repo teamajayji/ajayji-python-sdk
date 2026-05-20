@@ -154,6 +154,7 @@ asyncio.run(main())
 
 * [create_database](docs/sdks/dataingestionandtools/README.md#create_database) - Provision a Local Database Tool
 * [create_vector_db](docs/sdks/dataingestionandtools/README.md#create_vector_db) - Provision a Vector DB Tool
+* [execute_tool](docs/sdks/dataingestionandtools/README.md#execute_tool) - Execute a Tool Statelessly
 
 ### [MemoryManagement](docs/sdks/memorymanagement/README.md)
 

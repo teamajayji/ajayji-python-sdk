@@ -1,16 +1,16 @@
 lockVersion: 2.0.0
 id: aca66aee-3a3d-451d-a849-fded39891b8b
 management:
-  docChecksum: 32af1e6473384f94a96457d4caca4792
+  docChecksum: d931cad56448e103790723afb9aca584
   docVersion: 1.0.1
   speakeasyVersion: 1.763.1
   generationVersion: 2.884.4
-  releaseVersion: 0.1.3
-  configChecksum: 7eb7fabadef495ea3e03b3b41f7c7776
+  releaseVersion: 0.1.4
+  configChecksum: 3adc2acf4b7ff3f52aaddd5503ce5a85
 persistentEdits:
-  generation_id: d405edc7-5645-49d7-b5b5-bdaec127dc18
-  pristine_commit_hash: f525cfc3f2acba75215b50dc4b74b94c86a3b7bc
-  pristine_tree_hash: b1f230240210f1a16fd341bcacf54fd588793da9
+  generation_id: 9d427118-f943-417b-908b-48eb687c29a1
+  pristine_commit_hash: 6db8d81c8c4659cee2d93f05614ab1dfe0c9bdad
+  pristine_tree_hash: 47fc27c1d3e0cc8881ba448bc67589288946cb1b
 features:
   python:
     additionalDependencies: 1.0.0
@@ -61,12 +61,16 @@ trackedFiles:
     pristine_git_object: 256108e44d70a4c48feaec70acf9662ef1d5aaa2
   docs/models/createvectordbrequestbody.md:
     id: fd6bb340e4a7
-    last_write_checksum: sha1:cefbb0036b78582b2699161096471a025bd17ee5
-    pristine_git_object: e936f42a3effccaf450669ef1dd7865b300c79bc
+    last_write_checksum: sha1:0c8cf9a48a00f8a324ed20e6ffe70add68f3e323
+    pristine_git_object: 4ca5cb703be766aba4fb9a09552bb75e25c07301
   docs/models/createvectordbresponsebody.md:
     id: 7fba75386d9f
     last_write_checksum: sha1:2594610611175538a6ae847d94855d63b1b12708
     pristine_git_object: 0e3751b5f2c19b678313cf061ce8c4542caecf0d
+  docs/models/executetoolrequestbody.md:
+    id: c637d09e018e
+    last_write_checksum: sha1:87039123c59fc61c9a5ac6229f271cecc0157d65
+    pristine_git_object: 2075bc1a992dbd51bfea311dcbb1451580cab049
   docs/models/invokepersonarequest.md:
     id: 7676a097a324
     last_write_checksum: sha1:1789071858871700decdbf71451c6148e38d37b4
@@ -101,8 +105,8 @@ trackedFiles:
     pristine_git_object: 69dd549ec7f5f885101d08dd502e25748183aebf
   docs/sdks/dataingestionandtools/README.md:
     id: 959cc8f13497
-    last_write_checksum: sha1:cb5ddc9fae141a8cf93fe7476f2ba9bfa5116d52
-    pristine_git_object: cb1b98b2554fe08ec09ec6fd2f88b3aa5836c6e5
+    last_write_checksum: sha1:e635438c4d19f7e87cfdfef624b6dddb4d949751
+    pristine_git_object: b827f10ece21e568084a7a9e3a4887f3e47c3626
   docs/sdks/memorymanagement/README.md:
     id: 506ffb8faef3
     last_write_checksum: sha1:3b5eef21585e7b1d5310f911e8704d56be2d52eb
@@ -129,8 +133,8 @@ trackedFiles:
     pristine_git_object: c00200cfd072e9febac5d6be783da1925d11dac0
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:6412fcf41eae167751aa66aa22af4e57bf3bdb54
-    pristine_git_object: 01832b43a0fc943367ac067b9d3966d7b551bf16
+    last_write_checksum: sha1:ed632104a938fb93e8bb5b8f1861794ba76b5dbd
+    pristine_git_object: 194f8d62d1f3e5e5ed09242bd66cda6b8791c91c
   scripts/publish.sh:
     id: fe273b08f514
     last_write_checksum: sha1:adc9b741c12ad1591ab4870eabe20f0d0a86cd1a
@@ -153,16 +157,16 @@ trackedFiles:
     pristine_git_object: 984dac8c8d0b7e6fa1981a5544159267affed91e
   src/ajayji/_version.py:
     id: 756349a8cde0
-    last_write_checksum: sha1:7b46a8304188e0f9ce4c2bbb9dd197ee3ae41476
-    pristine_git_object: 9d6a4657306de256b2a420630db2f1a62fb7931c
+    last_write_checksum: sha1:41418835cd6617f52dfa7be9408abeaf5cafac96
+    pristine_git_object: 3c4a0f38e12adce27eea2dda58eec7ca13e80e01
   src/ajayji/basesdk.py:
     id: 4fd15b606549
     last_write_checksum: sha1:fa213ff642bd370b8a25fdf26d4de54e733088e4
     pristine_git_object: 22545a3bba6f2afa261a94a67391cf84576b84ba
   src/ajayji/data_ingestion_and_tools.py:
     id: a4dec4ae0c5e
-    last_write_checksum: sha1:9c6e5349f6cdc60ba8ec8608f1768ef8048a405a
-    pristine_git_object: 3384d9f5f4dabea11f6400eb403c2a28aec9eb16
+    last_write_checksum: sha1:a0c25e31472ed238f6ba17d4be28966d806c186a
+    pristine_git_object: 4e6fd0a0aaa338d34af5408bc97938c11e250364
   src/ajayji/errors/__init__.py:
     id: 8185554a92e5
     last_write_checksum: sha1:ae0bf1a244761cd7f2dc538d7e6490b85860f03d
@@ -197,8 +201,8 @@ trackedFiles:
     pristine_git_object: 2955873b6d6b009fa5e6deb00141d33db10728c5
   src/ajayji/models/__init__.py:
     id: 72a75b3df0b6
-    last_write_checksum: sha1:00dc2603b5a07ddf9f0d83893a3999b7f4b0b0bb
-    pristine_git_object: 5077617bde6f89e5f691beda9addf6e5e0ee28eb
+    last_write_checksum: sha1:c86962ca663e09cf944830206258d6d836e8928a
+    pristine_git_object: 149d5d84eb382edaab8509498e4c4f7f1b669543
   src/ajayji/models/askop.py:
     id: 6188834751b7
     last_write_checksum: sha1:ffc019debb70cad00fff8485439caf4cbb84aada
@@ -213,8 +217,12 @@ trackedFiles:
     pristine_git_object: d65dacc2b22b79ba6d7d60355e2fabd3ea13fb73
   src/ajayji/models/create_vector_dbop.py:
     id: 38006296204e
-    last_write_checksum: sha1:a39969587334db58fc426478030c4742f6c28fbe
-    pristine_git_object: 43633f686fcb06b2382ef2b394ff888723ee4da6
+    last_write_checksum: sha1:58d2d7768a4bf572acd965c9f083884cc5b9e26d
+    pristine_git_object: ce38e91494eb6ae2cc308e033620a760cdebcad7
+  src/ajayji/models/execute_toolop.py:
+    id: 6add5f5b928e
+    last_write_checksum: sha1:317b3100a5178fbab0437745648bb66266172cd5
+    pristine_git_object: c87613e21bbc5b2ffb604872d64e9446e7b18148
   src/ajayji/models/invoke_personaop.py:
     id: 433ac4894099
     last_write_checksum: sha1:e985be2ec8de6d4c3011f35f8488eda21399c86f
@@ -378,7 +386,7 @@ examples:
   create_vector_db:
     speakeasy-default-create-vector-db:
       requestBody:
-        application/json: {"folder_path": "<value>", "name": "<value>"}
+        application/json: {"embedding_model": "<value>", "folder_path": "<value>", "name": "<value>"}
       responses:
         "200":
           application/json: {}
@@ -389,5 +397,12 @@ examples:
       responses:
         "200":
           text/plain: "<value>"
+  execute_tool:
+    speakeasy-default-execute-tool:
+      requestBody:
+        application/json: {"tool_name": "<value>"}
+      responses:
+        "200":
+          application/json: {"key": "<value>", "key1": "<value>"}
 examplesVersion: 1.0.2
 generatedTests: {}
