@@ -6,7 +6,11 @@ from ajayji import SDK
 
 with SDK() as sdk:
 
-    res = sdk.stateless_execution.ask(query="<value>")
+    res = sdk.mcp_management.post_api_v1_mcp_connect(mcp_servers=[
+        "<value 1>",
+        "<value 2>",
+        "<value 3>",
+    ])
 
     # Handle response
     print(res)
@@ -25,7 +29,11 @@ async def main():
 
     async with SDK() as sdk:
 
-        res = await sdk.stateless_execution.ask_async(query="<value>")
+        res = await sdk.mcp_management.post_api_v1_mcp_connect_async(mcp_servers=[
+            "<value 1>",
+            "<value 2>",
+            "<value 3>",
+        ])
 
         # Handle response
         print(res)

@@ -29,14 +29,14 @@ class InvokePersonaRequest(BaseModel):
 class InvokePersonaResponseBodyTypedDict(TypedDict):
     r"""Successful workflow execution"""
 
-    response: NotRequired[Dict[str, Any]]
+    response: NotRequired[Any]
     r"""The final parsed output from the Persona's output_parser script."""
 
 
 class InvokePersonaResponseBody(BaseModel):
     r"""Successful workflow execution"""
 
-    response: Optional[Dict[str, Any]] = None
+    response: Optional[Any] = None
     r"""The final parsed output from the Persona's output_parser script."""
 
     @model_serializer(mode="wrap")

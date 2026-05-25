@@ -116,7 +116,11 @@ from ajayji import SDK
 
 with SDK() as sdk:
 
-    res = sdk.stateless_execution.ask(query="<value>")
+    res = sdk.mcp_management.post_api_v1_mcp_connect(mcp_servers=[
+        "<value 1>",
+        "<value 2>",
+        "<value 3>",
+    ])
 
     # Handle response
     print(res)
@@ -135,7 +139,11 @@ async def main():
 
     async with SDK() as sdk:
 
-        res = await sdk.stateless_execution.ask_async(query="<value>")
+        res = await sdk.mcp_management.post_api_v1_mcp_connect_async(mcp_servers=[
+            "<value 1>",
+            "<value 2>",
+            "<value 3>",
+        ])
 
         # Handle response
         print(res)
@@ -156,6 +164,11 @@ asyncio.run(main())
 * [create_vector_db](docs/sdks/dataingestionandtools/README.md#create_vector_db) - Provision a Vector DB Tool
 * [execute_tool](docs/sdks/dataingestionandtools/README.md#execute_tool) - Execute a Tool Statelessly
 
+### [McpManagement](docs/sdks/mcpmanagement/README.md)
+
+* [post_api_v1_mcp_connect](docs/sdks/mcpmanagement/README.md#post_api_v1_mcp_connect) - Explicitly connect to an MCP Server
+* [post_api_v1_mcp_disconnect](docs/sdks/mcpmanagement/README.md#post_api_v1_mcp_disconnect) - Explicitly disconnect from an MCP Server
+
 ### [MemoryManagement](docs/sdks/memorymanagement/README.md)
 
 * [load_model](docs/sdks/memorymanagement/README.md#load_model) - Load a model into active memory
@@ -168,6 +181,7 @@ asyncio.run(main())
 
 ### [PersonaOrchestration](docs/sdks/personaorchestration/README.md)
 
+* [create_persona](docs/sdks/personaorchestration/README.md#create_persona) - Create or Update a Persona
 * [invoke_persona](docs/sdks/personaorchestration/README.md#invoke_persona) - Invoke a Persona Webhook
 
 ### [StatelessExecution](docs/sdks/statelessexecution/README.md)
@@ -190,7 +204,11 @@ from ajayji.utils import BackoffStrategy, RetryConfig
 
 with SDK() as sdk:
 
-    res = sdk.stateless_execution.ask(query="<value>",
+    res = sdk.mcp_management.post_api_v1_mcp_connect(mcp_servers=[
+        "<value 1>",
+        "<value 2>",
+        "<value 3>",
+    ],
         RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
 
     # Handle response
@@ -208,7 +226,11 @@ with SDK(
     retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
 ) as sdk:
 
-    res = sdk.stateless_execution.ask(query="<value>")
+    res = sdk.mcp_management.post_api_v1_mcp_connect(mcp_servers=[
+        "<value 1>",
+        "<value 2>",
+        "<value 3>",
+    ])
 
     # Handle response
     print(res)
@@ -238,7 +260,11 @@ with SDK() as sdk:
     res = None
     try:
 
-        res = sdk.stateless_execution.ask(query="<value>")
+        res = sdk.mcp_management.post_api_v1_mcp_connect(mcp_servers=[
+            "<value 1>",
+            "<value 2>",
+            "<value 3>",
+        ])
 
         # Handle response
         print(res)
@@ -288,7 +314,11 @@ with SDK(
     server_url="http://localhost:14321",
 ) as sdk:
 
-    res = sdk.stateless_execution.ask(query="<value>")
+    res = sdk.mcp_management.post_api_v1_mcp_connect(mcp_servers=[
+        "<value 1>",
+        "<value 2>",
+        "<value 3>",
+    ])
 
     # Handle response
     print(res)

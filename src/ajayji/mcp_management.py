@@ -5,32 +5,24 @@ from ajayji import errors, models, utils
 from ajayji._hooks import HookContext
 from ajayji.types import OptionalNullable, UNSET
 from ajayji.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Dict, List, Mapping, Optional
+from typing import List, Mapping, Optional
 
 
-class PersonaOrchestration(BaseSDK):
-    def create_persona(
+class McpManagement(BaseSDK):
+    def post_api_v1_mcp_connect(
         self,
         *,
-        agent_id: str,
-        agent_name: str,
-        model: str,
-        mcp_servers: Optional[List[str]] = None,
-        system_prompt: OptionalNullable[str] = UNSET,
+        mcp_servers: List[str],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.CreatePersonaResponseBody:
-        r"""Create or Update a Persona
+    ) -> models.PostAPIV1McpConnectResponseBody:
+        r"""Explicitly connect to an MCP Server
 
-        Creates a new Persona or updates an existing one, optionally registering MCP servers for bi-directional tool execution.
+        Establishes a persistent Server-Sent Events (SSE) connection to an MCP host.
 
-        :param agent_id: The unique ID for this Persona.
-        :param agent_name: The human-readable name of the Persona.
-        :param model: The filename of the LLM to use (e.g., llama-3-8b.gguf).
-        :param mcp_servers: A list of MCP Server SSE URIs (e.g., http://127.0.0.1:8000/sse) to connect to during orchestration.
-        :param system_prompt: Optional system prompt to override the default.
+        :param mcp_servers: A list containing the SSE URI of the MCP server.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -46,17 +38,13 @@ class PersonaOrchestration(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.CreatePersonaRequestBody(
-            agent_id=agent_id,
-            agent_name=agent_name,
+        request = models.PostAPIV1McpConnectRequestBody(
             mcp_servers=mcp_servers,
-            model=model,
-            system_prompt=system_prompt,
         )
 
         req = self._build_request(
             method="POST",
-            path="/api/v1/personas",
+            path="/api/v1/mcp/connect",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -67,7 +55,7 @@ class PersonaOrchestration(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CreatePersonaRequestBody
+                request, False, False, "json", models.PostAPIV1McpConnectRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -85,7 +73,7 @@ class PersonaOrchestration(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="create_persona",
+                operation_id="post_/api/v1/mcp/connect",
                 oauth2_scopes=None,
                 security_source=None,
             ),
@@ -95,8 +83,10 @@ class PersonaOrchestration(BaseSDK):
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.CreatePersonaResponseBody, http_res)
-        if utils.match_response(http_res, "4XX", "*"):
+            return unmarshal_json_response(
+                models.PostAPIV1McpConnectResponseBody, http_res
+            )
+        if utils.match_response(http_res, ["400", "4XX"], "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
         if utils.match_response(http_res, ["500", "5XX"], "*"):
@@ -105,28 +95,20 @@ class PersonaOrchestration(BaseSDK):
 
         raise errors.SDKDefaultError("Unexpected response received", http_res)
 
-    async def create_persona_async(
+    async def post_api_v1_mcp_connect_async(
         self,
         *,
-        agent_id: str,
-        agent_name: str,
-        model: str,
-        mcp_servers: Optional[List[str]] = None,
-        system_prompt: OptionalNullable[str] = UNSET,
+        mcp_servers: List[str],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.CreatePersonaResponseBody:
-        r"""Create or Update a Persona
+    ) -> models.PostAPIV1McpConnectResponseBody:
+        r"""Explicitly connect to an MCP Server
 
-        Creates a new Persona or updates an existing one, optionally registering MCP servers for bi-directional tool execution.
+        Establishes a persistent Server-Sent Events (SSE) connection to an MCP host.
 
-        :param agent_id: The unique ID for this Persona.
-        :param agent_name: The human-readable name of the Persona.
-        :param model: The filename of the LLM to use (e.g., llama-3-8b.gguf).
-        :param mcp_servers: A list of MCP Server SSE URIs (e.g., http://127.0.0.1:8000/sse) to connect to during orchestration.
-        :param system_prompt: Optional system prompt to override the default.
+        :param mcp_servers: A list containing the SSE URI of the MCP server.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -142,17 +124,13 @@ class PersonaOrchestration(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.CreatePersonaRequestBody(
-            agent_id=agent_id,
-            agent_name=agent_name,
+        request = models.PostAPIV1McpConnectRequestBody(
             mcp_servers=mcp_servers,
-            model=model,
-            system_prompt=system_prompt,
         )
 
         req = self._build_request_async(
             method="POST",
-            path="/api/v1/personas",
+            path="/api/v1/mcp/connect",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -163,7 +141,7 @@ class PersonaOrchestration(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CreatePersonaRequestBody
+                request, False, False, "json", models.PostAPIV1McpConnectRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -181,7 +159,7 @@ class PersonaOrchestration(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="create_persona",
+                operation_id="post_/api/v1/mcp/connect",
                 oauth2_scopes=None,
                 security_source=None,
             ),
@@ -191,8 +169,10 @@ class PersonaOrchestration(BaseSDK):
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.CreatePersonaResponseBody, http_res)
-        if utils.match_response(http_res, "4XX", "*"):
+            return unmarshal_json_response(
+                models.PostAPIV1McpConnectResponseBody, http_res
+            )
+        if utils.match_response(http_res, ["400", "4XX"], "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
         if utils.match_response(http_res, ["500", "5XX"], "*"):
@@ -201,22 +181,18 @@ class PersonaOrchestration(BaseSDK):
 
         raise errors.SDKDefaultError("Unexpected response received", http_res)
 
-    def invoke_persona(
+    def post_api_v1_mcp_disconnect(
         self,
         *,
-        id: str,
-        request_body: Dict[str, Any],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.InvokePersonaResponseBody:
-        r"""Invoke a Persona Webhook
+    ) -> models.PostAPIV1McpDisconnectResponseBody:
+        r"""Explicitly disconnect from an MCP Server
 
-        Executes a full orchestration pipeline (Tools, JS Parsers, CoreML) for a specific Persona using a JSON payload.
+        Closes the persistent SSE connection to the MCP host and cleans up resources.
 
-        :param id: The unique ID of the ChatPersona to invoke.
-        :param request_body:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -231,27 +207,18 @@ class PersonaOrchestration(BaseSDK):
             base_url = server_url
         else:
             base_url = self._get_url(base_url, url_variables)
-
-        request = models.InvokePersonaRequest(
-            id=id,
-            request_body=request_body,
-        )
-
         req = self._build_request(
             method="POST",
-            path="/api/v1/personas/{id}/invoke",
+            path="/api/v1/mcp/disconnect",
             base_url=base_url,
             url_variables=url_variables,
-            request=request,
-            request_body_required=True,
-            request_has_path_params=True,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
             request_has_query_params=False,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
@@ -268,7 +235,7 @@ class PersonaOrchestration(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="invoke_persona",
+                operation_id="post_/api/v1/mcp/disconnect",
                 oauth2_scopes=None,
                 security_source=None,
             ),
@@ -278,8 +245,10 @@ class PersonaOrchestration(BaseSDK):
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.InvokePersonaResponseBody, http_res)
-        if utils.match_response(http_res, ["400", "403", "404", "4XX"], "*"):
+            return unmarshal_json_response(
+                models.PostAPIV1McpDisconnectResponseBody, http_res
+            )
+        if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
         if utils.match_response(http_res, ["500", "5XX"], "*"):
@@ -288,22 +257,18 @@ class PersonaOrchestration(BaseSDK):
 
         raise errors.SDKDefaultError("Unexpected response received", http_res)
 
-    async def invoke_persona_async(
+    async def post_api_v1_mcp_disconnect_async(
         self,
         *,
-        id: str,
-        request_body: Dict[str, Any],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.InvokePersonaResponseBody:
-        r"""Invoke a Persona Webhook
+    ) -> models.PostAPIV1McpDisconnectResponseBody:
+        r"""Explicitly disconnect from an MCP Server
 
-        Executes a full orchestration pipeline (Tools, JS Parsers, CoreML) for a specific Persona using a JSON payload.
+        Closes the persistent SSE connection to the MCP host and cleans up resources.
 
-        :param id: The unique ID of the ChatPersona to invoke.
-        :param request_body:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -318,27 +283,18 @@ class PersonaOrchestration(BaseSDK):
             base_url = server_url
         else:
             base_url = self._get_url(base_url, url_variables)
-
-        request = models.InvokePersonaRequest(
-            id=id,
-            request_body=request_body,
-        )
-
         req = self._build_request_async(
             method="POST",
-            path="/api/v1/personas/{id}/invoke",
+            path="/api/v1/mcp/disconnect",
             base_url=base_url,
             url_variables=url_variables,
-            request=request,
-            request_body_required=True,
-            request_has_path_params=True,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
             request_has_query_params=False,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
-            ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
         )
@@ -355,7 +311,7 @@ class PersonaOrchestration(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="invoke_persona",
+                operation_id="post_/api/v1/mcp/disconnect",
                 oauth2_scopes=None,
                 security_source=None,
             ),
@@ -365,8 +321,10 @@ class PersonaOrchestration(BaseSDK):
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.InvokePersonaResponseBody, http_res)
-        if utils.match_response(http_res, ["400", "403", "404", "4XX"], "*"):
+            return unmarshal_json_response(
+                models.PostAPIV1McpDisconnectResponseBody, http_res
+            )
+        if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
         if utils.match_response(http_res, ["500", "5XX"], "*"):

@@ -96,8 +96,56 @@ paths:
                     type: string
         '500':
           description: Error stopping model
+  /api/v1/personas:
+    post:
+      summary: Create or Update a Persona
+      description: Creates a new Persona or updates an existing one, optionally registering MCP servers for bi-directional tool execution.
+      operationId: create_persona
+      tags:
+        - Persona Orchestration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - agent_id
+                - agent_name
+                - model
+              properties:
+                agent_id:
+                  type: string
+                  description: The unique ID for this Persona.
+                agent_name:
+                  type: string
+                  description: The human-readable name of the Persona.
+                model:
+                  type: string
+                  description: The filename of the LLM to use (e.g., llama-3-8b.gguf).
+                mcp_servers:
+                  type: array
+                  items:
+                    type: string
+                  description: A list of MCP Server SSE URIs (e.g., http://127.0.0.1:8000/sse) to connect to during orchestration.
+                system_prompt:
+                  type: string
+                  nullable: true
+                  description: Optional system prompt to override the default.
+      responses:
+        '200':
+          description: Persona created/updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '500':
+          description: Internal execution error
 
-  /personas/{id}/invoke:
+  /api/v1/personas/{id}/invoke:
     post:
       summary: Invoke a Persona Webhook
       description: Executes a full orchestration pipeline (Tools, JS Parsers, CoreML) for a specific Persona using a JSON payload.
@@ -128,8 +176,6 @@ paths:
                 type: object
                 properties:
                   response:
-                    type: object
-                    additionalProperties: true
                     description: The final parsed output from the Persona's output_parser script.
         '400':
           description: Bad request (e.g., payload not JSON)
@@ -345,3 +391,57 @@ paths:
                 type: string
         '500':
           description: Internal server error
+
+  /api/v1/mcp/connect:
+    post:
+      summary: Explicitly connect to an MCP Server
+      description: Establishes a persistent Server-Sent Events (SSE) connection to an MCP host.
+      tags:
+        - mcp_management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - mcp_servers
+              properties:
+                mcp_servers:
+                  type: array
+                  items:
+                    type: string
+                  description: A list containing the SSE URI of the MCP server.
+      responses:
+        '200':
+          description: MCP connection successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '400':
+          description: Bad Request (missing mcp_servers)
+        '500':
+          description: Internal Server Error (connection failed)
+
+  /api/v1/mcp/disconnect:
+    post:
+      summary: Explicitly disconnect from an MCP Server
+      description: Closes the persistent SSE connection to the MCP host and cleans up resources.
+      tags:
+        - mcp_management
+      responses:
+        '200':
+          description: MCP connection successfully disconnected
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '500':
+          description: Internal Server Error (disconnection failed)

@@ -21,6 +21,12 @@ if TYPE_CHECKING:
         CreateDatabaseResponseBody,
         CreateDatabaseResponseBodyTypedDict,
     )
+    from .create_personaop import (
+        CreatePersonaRequestBody,
+        CreatePersonaRequestBodyTypedDict,
+        CreatePersonaResponseBody,
+        CreatePersonaResponseBodyTypedDict,
+    )
     from .create_vector_dbop import (
         CreateVectorDbRequestBody,
         CreateVectorDbRequestBodyTypedDict,
@@ -39,6 +45,16 @@ if TYPE_CHECKING:
         LoadModelRequestBodyTypedDict,
         LoadModelResponseBody,
         LoadModelResponseBodyTypedDict,
+    )
+    from .post_api_v1_mcp_connectop import (
+        PostAPIV1McpConnectRequestBody,
+        PostAPIV1McpConnectRequestBodyTypedDict,
+        PostAPIV1McpConnectResponseBody,
+        PostAPIV1McpConnectResponseBodyTypedDict,
+    )
+    from .post_api_v1_mcp_disconnectop import (
+        PostAPIV1McpDisconnectResponseBody,
+        PostAPIV1McpDisconnectResponseBodyTypedDict,
     )
     from .pull_modelop import (
         PullModelRequestBody,
@@ -59,6 +75,10 @@ __all__ = [
     "CreateDatabaseRequestBodyTypedDict",
     "CreateDatabaseResponseBody",
     "CreateDatabaseResponseBodyTypedDict",
+    "CreatePersonaRequestBody",
+    "CreatePersonaRequestBodyTypedDict",
+    "CreatePersonaResponseBody",
+    "CreatePersonaResponseBodyTypedDict",
     "CreateVectorDbRequestBody",
     "CreateVectorDbRequestBodyTypedDict",
     "CreateVectorDbResponseBody",
@@ -73,6 +93,12 @@ __all__ = [
     "LoadModelRequestBodyTypedDict",
     "LoadModelResponseBody",
     "LoadModelResponseBodyTypedDict",
+    "PostAPIV1McpConnectRequestBody",
+    "PostAPIV1McpConnectRequestBodyTypedDict",
+    "PostAPIV1McpConnectResponseBody",
+    "PostAPIV1McpConnectResponseBodyTypedDict",
+    "PostAPIV1McpDisconnectResponseBody",
+    "PostAPIV1McpDisconnectResponseBodyTypedDict",
     "PullModelRequestBody",
     "PullModelRequestBodyTypedDict",
     "PullModelResponseBody",
@@ -92,6 +118,10 @@ _dynamic_imports: dict[str, str] = {
     "CreateDatabaseRequestBodyTypedDict": ".create_databaseop",
     "CreateDatabaseResponseBody": ".create_databaseop",
     "CreateDatabaseResponseBodyTypedDict": ".create_databaseop",
+    "CreatePersonaRequestBody": ".create_personaop",
+    "CreatePersonaRequestBodyTypedDict": ".create_personaop",
+    "CreatePersonaResponseBody": ".create_personaop",
+    "CreatePersonaResponseBodyTypedDict": ".create_personaop",
     "CreateVectorDbRequestBody": ".create_vector_dbop",
     "CreateVectorDbRequestBodyTypedDict": ".create_vector_dbop",
     "CreateVectorDbResponseBody": ".create_vector_dbop",
@@ -106,6 +136,12 @@ _dynamic_imports: dict[str, str] = {
     "LoadModelRequestBodyTypedDict": ".load_modelop",
     "LoadModelResponseBody": ".load_modelop",
     "LoadModelResponseBodyTypedDict": ".load_modelop",
+    "PostAPIV1McpConnectRequestBody": ".post_api_v1_mcp_connectop",
+    "PostAPIV1McpConnectRequestBodyTypedDict": ".post_api_v1_mcp_connectop",
+    "PostAPIV1McpConnectResponseBody": ".post_api_v1_mcp_connectop",
+    "PostAPIV1McpConnectResponseBodyTypedDict": ".post_api_v1_mcp_connectop",
+    "PostAPIV1McpDisconnectResponseBody": ".post_api_v1_mcp_disconnectop",
+    "PostAPIV1McpDisconnectResponseBodyTypedDict": ".post_api_v1_mcp_disconnectop",
     "PullModelRequestBody": ".pull_modelop",
     "PullModelRequestBodyTypedDict": ".pull_modelop",
     "PullModelResponseBody": ".pull_modelop",

@@ -1,16 +1,16 @@
 lockVersion: 2.0.0
 id: aca66aee-3a3d-451d-a849-fded39891b8b
 management:
-  docChecksum: d931cad56448e103790723afb9aca584
+  docChecksum: ab9ef1a47c639faa44faf73daf2be974
   docVersion: 1.0.1
   speakeasyVersion: 1.763.1
   generationVersion: 2.884.4
-  releaseVersion: 0.1.4
-  configChecksum: 3adc2acf4b7ff3f52aaddd5503ce5a85
+  releaseVersion: 0.1.11
+  configChecksum: 36db939ea5d85beda4dcff5bd9909019
 persistentEdits:
-  generation_id: 9d427118-f943-417b-908b-48eb687c29a1
-  pristine_commit_hash: 6db8d81c8c4659cee2d93f05614ab1dfe0c9bdad
-  pristine_tree_hash: 47fc27c1d3e0cc8881ba448bc67589288946cb1b
+  generation_id: 27c5e451-2da7-4663-a2b8-ef7248e2b5af
+  pristine_commit_hash: d2fbc3a00a846b7fdb9b955dd4a74abd2d1d80fe
+  pristine_tree_hash: bb7025b1e6149af4109056e76ddd4824688e796f
 features:
   python:
     additionalDependencies: 1.0.0
@@ -37,8 +37,8 @@ trackedFiles:
     pristine_git_object: 8d79f0abb72526f1fb34a4c03e5bba612c6ba2ae
   USAGE.md:
     id: 3aed33ce6e6f
-    last_write_checksum: sha1:c4cd55456c46f7ea2fb25f025a54d1e960df21ed
-    pristine_git_object: 9871c1ed2ee25bba42cface9761cee2e325692ac
+    last_write_checksum: sha1:ab83371a130d81ac0877ab415f435a81c2c1ad57
+    pristine_git_object: a9e3d009ead82db117c29773d2536edd172bdf31
   docs/models/askrequestbody.md:
     id: f680e333ee7e
     last_write_checksum: sha1:9d869e5a5d27c17ece776b8c9c56a29d87781dcd
@@ -59,6 +59,14 @@ trackedFiles:
     id: bd3d280ded7d
     last_write_checksum: sha1:7f68eb0efe8174ee37f2de6e42471ced9ba5506a
     pristine_git_object: 256108e44d70a4c48feaec70acf9662ef1d5aaa2
+  docs/models/createpersonarequestbody.md:
+    id: a46dc3964a17
+    last_write_checksum: sha1:9615568a71eb703fdb2dd5eee11d4002ad9a2b8a
+    pristine_git_object: af53b2f09a905554d1ec9ec388eff33a98cbb470
+  docs/models/createpersonaresponsebody.md:
+    id: e134c60d2b88
+    last_write_checksum: sha1:d4d652b5c49e9ad2b2157657c94aa36679a68c42
+    pristine_git_object: a91692317d9242b9fb816bb76e6b2b9c87e2b9c0
   docs/models/createvectordbrequestbody.md:
     id: fd6bb340e4a7
     last_write_checksum: sha1:0c8cf9a48a00f8a324ed20e6ffe70add68f3e323
@@ -77,8 +85,8 @@ trackedFiles:
     pristine_git_object: d6b2c593949408e3c1a4fc32742de3df9fd59986
   docs/models/invokepersonaresponsebody.md:
     id: 39b21108900a
-    last_write_checksum: sha1:92c43141a5b081c666271096851d21cad93c25e7
-    pristine_git_object: 9d76a99f4e0447987c5577c5ee22046c45115e13
+    last_write_checksum: sha1:08698d4676d9a7434d4f73a4527bee71363839c9
+    pristine_git_object: bfb6afa317f14a35430cd7303ef4ff5f7f549fa7
   docs/models/loadmodelrequestbody.md:
     id: 8e7ff1f250c4
     last_write_checksum: sha1:48c40ca7c85071eaedb441c1701e4dd21e55f3ad
@@ -87,6 +95,18 @@ trackedFiles:
     id: efa19b1d02d6
     last_write_checksum: sha1:08be5414988e7507db2f2b4e37480e928bba941b
     pristine_git_object: f0bedb03aeb43b2f73f75b15fa273d9dfe5ab13d
+  docs/models/postapiv1mcpconnectrequestbody.md:
+    id: c20bc9d9a135
+    last_write_checksum: sha1:2bb6ed371ece700eef63046e4ba9a7fd64ffb512
+    pristine_git_object: d36d6635102a1d7db1e6ad255f8670081211adc2
+  docs/models/postapiv1mcpconnectresponsebody.md:
+    id: 24eaf3a5efcf
+    last_write_checksum: sha1:5df7e616ecd24164843cc2bb01ff9d715fee0128
+    pristine_git_object: e655f499766d5ee0e87b495f31409eb34f84dfa3
+  docs/models/postapiv1mcpdisconnectresponsebody.md:
+    id: 99a6e885ad1d
+    last_write_checksum: sha1:265bb9e4ae9305e428281dea1a937b12ec7595f4
+    pristine_git_object: 30c3f85bcc7d989a0e5b188b7cd60e9ca014f1d6
   docs/models/pullmodelrequestbody.md:
     id: f9c9fbdf7a4d
     last_write_checksum: sha1:54cf8c8c6cb9c09b45ef2accf0cebb7b30e72cb4
@@ -107,6 +127,10 @@ trackedFiles:
     id: 959cc8f13497
     last_write_checksum: sha1:e635438c4d19f7e87cfdfef624b6dddb4d949751
     pristine_git_object: b827f10ece21e568084a7a9e3a4887f3e47c3626
+  docs/sdks/mcpmanagement/README.md:
+    id: e41701622219
+    last_write_checksum: sha1:6f648b8537124f4326a66012a4307ab86aa33303
+    pristine_git_object: ba905402dfa876bcd15107d9284615c71ac40edc
   docs/sdks/memorymanagement/README.md:
     id: 506ffb8faef3
     last_write_checksum: sha1:3b5eef21585e7b1d5310f911e8704d56be2d52eb
@@ -117,8 +141,8 @@ trackedFiles:
     pristine_git_object: 026b2e6d6c9b0d50a6d962093a7a94f12f2b6fff
   docs/sdks/personaorchestration/README.md:
     id: cbdb3c6c15f4
-    last_write_checksum: sha1:60ba8071f4c34c6538e28654b70f12b032cab67d
-    pristine_git_object: 6412338e12800412132a2dafcf1520a2b05e1224
+    last_write_checksum: sha1:0fc0a381a5662443ba674c23d53f63aee0674148
+    pristine_git_object: 5566c37998dbc67e9b374ea253413149559c8bdc
   docs/sdks/statelessexecution/README.md:
     id: a481385e63cb
     last_write_checksum: sha1:27db914d0b127ce0f7fd7754ea6a69bde4df2ee9
@@ -133,8 +157,8 @@ trackedFiles:
     pristine_git_object: c00200cfd072e9febac5d6be783da1925d11dac0
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:ed632104a938fb93e8bb5b8f1861794ba76b5dbd
-    pristine_git_object: 194f8d62d1f3e5e5ed09242bd66cda6b8791c91c
+    last_write_checksum: sha1:08fc18c086e452600f3441679ef7679fbd5428e6
+    pristine_git_object: 1866f5eaea655d3f3e1d52ebf09c212185db39d2
   scripts/publish.sh:
     id: fe273b08f514
     last_write_checksum: sha1:adc9b741c12ad1591ab4870eabe20f0d0a86cd1a
@@ -157,8 +181,8 @@ trackedFiles:
     pristine_git_object: 984dac8c8d0b7e6fa1981a5544159267affed91e
   src/ajayji/_version.py:
     id: 756349a8cde0
-    last_write_checksum: sha1:41418835cd6617f52dfa7be9408abeaf5cafac96
-    pristine_git_object: 3c4a0f38e12adce27eea2dda58eec7ca13e80e01
+    last_write_checksum: sha1:6d1e47eb2acc5b598556548cf08f98496498a7c7
+    pristine_git_object: 2f0151a65600d1f66ca1433443258e9062a73d40
   src/ajayji/basesdk.py:
     id: 4fd15b606549
     last_write_checksum: sha1:fa213ff642bd370b8a25fdf26d4de54e733088e4
@@ -191,6 +215,10 @@ trackedFiles:
     id: 759bb8aa21d7
     last_write_checksum: sha1:5e55338d6ee9f01ab648cad4380201a8a3da7dd7
     pristine_git_object: 89560b566073785535643e694c112bedbd3db13d
+  src/ajayji/mcp_management.py:
+    id: 8da768672c2c
+    last_write_checksum: sha1:2094990520a0199c72afeb1e572a8379e5daa492
+    pristine_git_object: 7daa68f94ecb41bf65801d4289c88cb866b2a5a1
   src/ajayji/memory_management.py:
     id: 2bc3f3298e98
     last_write_checksum: sha1:5a5e569de043f080afab7a4f4fa39e2e45f65d16
@@ -201,8 +229,8 @@ trackedFiles:
     pristine_git_object: 2955873b6d6b009fa5e6deb00141d33db10728c5
   src/ajayji/models/__init__.py:
     id: 72a75b3df0b6
-    last_write_checksum: sha1:c86962ca663e09cf944830206258d6d836e8928a
-    pristine_git_object: 149d5d84eb382edaab8509498e4c4f7f1b669543
+    last_write_checksum: sha1:1f31855dd0c9c1fd5eb9d368e5f6b18ace9df3c3
+    pristine_git_object: 6f1f1930d6037ebb9f0ea2e8b87806831f5fc930
   src/ajayji/models/askop.py:
     id: 6188834751b7
     last_write_checksum: sha1:ffc019debb70cad00fff8485439caf4cbb84aada
@@ -215,6 +243,10 @@ trackedFiles:
     id: ffe757e46e06
     last_write_checksum: sha1:65fd17400f1de04bfc158e57c34d95c93a1de56e
     pristine_git_object: d65dacc2b22b79ba6d7d60355e2fabd3ea13fb73
+  src/ajayji/models/create_personaop.py:
+    id: 222df2c7e55c
+    last_write_checksum: sha1:192186716aeca6c6eba44c65b3c121c6e382c5ae
+    pristine_git_object: 58cac1e09657d537ab85a4fd8527cf5d09136dd1
   src/ajayji/models/create_vector_dbop.py:
     id: 38006296204e
     last_write_checksum: sha1:58d2d7768a4bf572acd965c9f083884cc5b9e26d
@@ -225,12 +257,20 @@ trackedFiles:
     pristine_git_object: c87613e21bbc5b2ffb604872d64e9446e7b18148
   src/ajayji/models/invoke_personaop.py:
     id: 433ac4894099
-    last_write_checksum: sha1:e985be2ec8de6d4c3011f35f8488eda21399c86f
-    pristine_git_object: 88eba455bccf659952d98251f4c66cb63fd594d1
+    last_write_checksum: sha1:7ce8e10b4bcced5f49de3b234708bd9597feb5c9
+    pristine_git_object: 0ec6b0ab82866498baed4d62e6bd755ec21e7b83
   src/ajayji/models/load_modelop.py:
     id: 96f8ef943553
     last_write_checksum: sha1:6ba2cf8139acb3e5fbe14fb143270309350179cf
     pristine_git_object: 8fb846e0f963b8112a90759d1afb5f786a411d44
+  src/ajayji/models/post_api_v1_mcp_connectop.py:
+    id: a165b917676f
+    last_write_checksum: sha1:2de0f8f6e4697c3d252393f758cd584a30042050
+    pristine_git_object: 1f3c15b4115fa5fdc73d459613c9df4a4fb11044
+  src/ajayji/models/post_api_v1_mcp_disconnectop.py:
+    id: 4d21639b2ca2
+    last_write_checksum: sha1:1cdf271a615ed9874665ecfba44a7d7317b6ff8b
+    pristine_git_object: 11b80681d3a009e447a252b85e8a02a9f4719a68
   src/ajayji/models/pull_modelop.py:
     id: d7b2f0b13f24
     last_write_checksum: sha1:52573f809b0557f6eeda025be0e8f06bdc836b5d
@@ -241,16 +281,16 @@ trackedFiles:
     pristine_git_object: 2852ddda73f1e8e2c9f2252bba02a85dd9015944
   src/ajayji/persona_orchestration.py:
     id: f9370200998c
-    last_write_checksum: sha1:0dbb646565fadcc49f66af2a616da80ea5da02ed
-    pristine_git_object: 13019f1717b8c01125d8a2b173762225f4120ec9
+    last_write_checksum: sha1:7e1d3e78415270cbeda1193abb5eb5ba52dcfdc6
+    pristine_git_object: 54d9b3d37c43023ee32a41acf10aee66088f9605
   src/ajayji/py.typed:
     id: 54a48a422a7f
     last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
     pristine_git_object: 3e38f1a929f7d6b1d6de74604aa87e3d8f010544
   src/ajayji/sdk.py:
     id: 12aed435aa82
-    last_write_checksum: sha1:f0b49539cc330635caa01822e33fbc477b80c07a
-    pristine_git_object: 1e01f85b28f6d40f27f651bec7c8234e2d99436b
+    last_write_checksum: sha1:3ac9d9ded9d5710b17125b3767601da36add405f
+    pristine_git_object: 857093d458fc0f7282b5b7cfc6a11274501ecdeb
   src/ajayji/sdkconfiguration.py:
     id: a47432774f31
     last_write_checksum: sha1:817090bedc1d6d1273807de2ebf2e74ecca15461
@@ -404,5 +444,24 @@ examples:
       responses:
         "200":
           application/json: {"key": "<value>", "key1": "<value>"}
+  create_persona:
+    speakeasy-default-create-persona:
+      requestBody:
+        application/json: {"agent_id": "<id>", "agent_name": "<value>", "model": "Charger"}
+      responses:
+        "200":
+          application/json: {}
+  post_/api/v1/mcp/connect:
+    speakeasy-default-post-/api/v1-/mcp/connect:
+      requestBody:
+        application/json: {"mcp_servers": ["<value 1>", "<value 2>", "<value 3>"]}
+      responses:
+        "200":
+          application/json: {}
+  post_/api/v1/mcp/disconnect:
+    speakeasy-default-post-/api/v1-/mcp/disconnect:
+      responses:
+        "200":
+          application/json: {}
 examplesVersion: 1.0.2
 generatedTests: {}

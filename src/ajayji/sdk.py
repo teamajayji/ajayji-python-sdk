@@ -16,6 +16,7 @@ import weakref
 
 if TYPE_CHECKING:
     from ajayji.data_ingestion_and_tools import DataIngestionAndTools
+    from ajayji.mcp_management import McpManagement
     from ajayji.memory_management import MemoryManagement
     from ajayji.model_management import ModelManagement
     from ajayji.persona_orchestration import PersonaOrchestration
@@ -25,22 +26,24 @@ if TYPE_CHECKING:
 class SDK(BaseSDK):
     r"""Ajayji Local SDK API: Local daemon API for the Ajayji application, allowing native Python SDK integration for Data Scientists and developers."""
 
+    mcp_management: "McpManagement"
+    persona_orchestration: "PersonaOrchestration"
     stateless_execution: "StatelessExecution"
     data_ingestion_and_tools: "DataIngestionAndTools"
     model_management: "ModelManagement"
-    persona_orchestration: "PersonaOrchestration"
     memory_management: "MemoryManagement"
     _sub_sdk_map = {
+        "mcp_management": ("ajayji.mcp_management", "McpManagement"),
+        "persona_orchestration": (
+            "ajayji.persona_orchestration",
+            "PersonaOrchestration",
+        ),
         "stateless_execution": ("ajayji.stateless_execution", "StatelessExecution"),
         "data_ingestion_and_tools": (
             "ajayji.data_ingestion_and_tools",
             "DataIngestionAndTools",
         ),
         "model_management": ("ajayji.model_management", "ModelManagement"),
-        "persona_orchestration": (
-            "ajayji.persona_orchestration",
-            "PersonaOrchestration",
-        ),
         "memory_management": ("ajayji.memory_management", "MemoryManagement"),
     }
 
