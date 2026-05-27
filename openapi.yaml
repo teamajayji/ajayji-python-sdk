@@ -186,6 +186,33 @@ paths:
         '500':
           description: Internal execution error
 
+  /api/v1/personas/{id}/canvas.png:
+    get:
+      summary: Get the Canvas Graphic
+      description: Returns a generated PNG image of the persona's orchestration canvas.
+      operationId: get_persona_canvas
+      tags:
+        - Persona Orchestration
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the persona to generate the canvas for
+      responses:
+        '200':
+          description: Successful generation of the canvas PNG image
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Persona or Plan not found
+        '500':
+          description: Internal Server Error
+
   /pull:
     post:
       summary: Download a model from Hugging Face

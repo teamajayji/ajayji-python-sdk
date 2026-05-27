@@ -5,6 +5,7 @@ from ajayji import errors, models, utils
 from ajayji._hooks import HookContext
 from ajayji.types import OptionalNullable, UNSET
 from ajayji.utils.unmarshal_json_response import unmarshal_json_response
+import httpx
 from typing import Any, Dict, List, Mapping, Optional
 
 
@@ -201,6 +202,176 @@ class PersonaOrchestration(BaseSDK):
 
         raise errors.SDKDefaultError("Unexpected response received", http_res)
 
+    def get_persona_canvas(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> httpx.Response:
+        r"""Get the Canvas Graphic
+
+        Returns a generated PNG image of the persona's orchestration canvas.
+
+        :param id: The ID of the persona to generate the canvas for
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.GetPersonaCanvasRequest(
+            id=id,
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/api/v1/personas/{id}/canvas.png",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=False,
+            user_agent_header="user-agent",
+            accept_header_value="image/png",
+            http_headers=http_headers,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="get_persona_canvas",
+                oauth2_scopes=None,
+                security_source=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            stream=True,
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "200", "image/png"):
+            return http_res
+        if utils.match_response(http_res, ["404", "4XX"], "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
+        if utils.match_response(http_res, ["500", "5XX"], "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
+
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKDefaultError(
+            "Unexpected response received", http_res, http_res_text
+        )
+
+    async def get_persona_canvas_async(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> httpx.Response:
+        r"""Get the Canvas Graphic
+
+        Returns a generated PNG image of the persona's orchestration canvas.
+
+        :param id: The ID of the persona to generate the canvas for
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.GetPersonaCanvasRequest(
+            id=id,
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/api/v1/personas/{id}/canvas.png",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=False,
+            user_agent_header="user-agent",
+            accept_header_value="image/png",
+            http_headers=http_headers,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="get_persona_canvas",
+                oauth2_scopes=None,
+                security_source=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            stream=True,
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "200", "image/png"):
+            return http_res
+        if utils.match_response(http_res, ["404", "4XX"], "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
+        if utils.match_response(http_res, ["500", "5XX"], "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
+
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKDefaultError(
+            "Unexpected response received", http_res, http_res_text
+        )
+
     def invoke_persona(
         self,
         *,
@@ -374,3 +545,63 @@ class PersonaOrchestration(BaseSDK):
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
 
         raise errors.SDKDefaultError("Unexpected response received", http_res)
+
+    def display(self, id: str):
+        """
+        Displays the visual Orchestration Canvas of the Persona inline within a Jupyter Notebook.
+        
+        Args:
+            id: The ID of the persona to display.
+        """
+        try:
+            from IPython.display import Image, display as ipy_display
+        except ImportError:
+            print("The .display() method requires an IPython/Jupyter environment. Please run inside a notebook.")
+            return
+
+        try:
+            # Call the synchronous generated method
+            response = self.get_persona_canvas(id=id)
+            
+            # Extract the raw bytes, explicitly calling .read() if it's a streaming HTTPX response
+            if hasattr(response, 'read') and callable(response.read):
+                png_bytes = response.read()
+            elif hasattr(response, 'content'):
+                png_bytes = response.content
+            else:
+                png_bytes = response
+                
+            ipy_display(Image(data=png_bytes))
+        except Exception as e:
+            print(f"Failed to display canvas: {e}")
+
+    async def display_async(self, id: str):
+        """
+        Asynchronously displays the visual Orchestration Canvas of the Persona inline within a Jupyter Notebook.
+        
+        Args:
+            id: The ID of the persona to display.
+        """
+        try:
+            from IPython.display import Image, display as ipy_display
+        except ImportError:
+            print("The .display_async() method requires an IPython/Jupyter environment.")
+            return
+
+        try:
+            # Call the asynchronous generated method
+            response = await self.get_persona_canvas_async(id=id)
+            
+            # Read the async stream
+            if hasattr(response, 'aread') and callable(response.aread):
+                png_bytes = await response.aread()
+            elif hasattr(response, 'read') and callable(response.read):
+                png_bytes = response.read()
+            elif hasattr(response, 'content'):
+                png_bytes = response.content
+            else:
+                png_bytes = response
+                
+            ipy_display(Image(data=png_bytes))
+        except Exception as e:
+            print(f"Failed to display canvas: {e}")

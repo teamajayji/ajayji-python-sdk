@@ -182,6 +182,7 @@ asyncio.run(main())
 ### [PersonaOrchestration](docs/sdks/personaorchestration/README.md)
 
 * [create_persona](docs/sdks/personaorchestration/README.md#create_persona) - Create or Update a Persona
+* [get_persona_canvas](docs/sdks/personaorchestration/README.md#get_persona_canvas) - Get the Canvas Graphic
 * [invoke_persona](docs/sdks/personaorchestration/README.md#invoke_persona) - Invoke a Persona Webhook
 
 ### [StatelessExecution](docs/sdks/statelessexecution/README.md)

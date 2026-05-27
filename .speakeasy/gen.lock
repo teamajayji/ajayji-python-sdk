@@ -1,21 +1,22 @@
 lockVersion: 2.0.0
 id: aca66aee-3a3d-451d-a849-fded39891b8b
 management:
-  docChecksum: ab9ef1a47c639faa44faf73daf2be974
+  docChecksum: 142215318d9953d0fff69f349416cf18
   docVersion: 1.0.1
   speakeasyVersion: 1.763.1
   generationVersion: 2.884.4
-  releaseVersion: 0.1.11
-  configChecksum: 36db939ea5d85beda4dcff5bd9909019
+  releaseVersion: 0.2.2
+  configChecksum: 5d3e5554e53d99023aa92f963993ac3d
 persistentEdits:
-  generation_id: 27c5e451-2da7-4663-a2b8-ef7248e2b5af
-  pristine_commit_hash: d2fbc3a00a846b7fdb9b955dd4a74abd2d1d80fe
-  pristine_tree_hash: bb7025b1e6149af4109056e76ddd4824688e796f
+  generation_id: 0380eef2-5069-4e73-b0f9-d30f90135cdd
+  pristine_commit_hash: 9d4865cc0ebb863260061fc7798998dce42381d6
+  pristine_tree_hash: e8623450577b38965d357459a3db964ca9bcb683
 features:
   python:
     additionalDependencies: 1.0.0
     core: 6.0.21
     defaultEnabledRetries: 0.2.0
+    downloadStreams: 1.0.1
     envVarSecurityUsage: 0.3.2
     flatRequests: 1.0.1
     flattening: 3.1.1
@@ -79,6 +80,10 @@ trackedFiles:
     id: c637d09e018e
     last_write_checksum: sha1:87039123c59fc61c9a5ac6229f271cecc0157d65
     pristine_git_object: 2075bc1a992dbd51bfea311dcbb1451580cab049
+  docs/models/getpersonacanvasrequest.md:
+    id: b31abfb4ded9
+    last_write_checksum: sha1:cc1cad6c52bcffe9bb61ed4a3f801a5c54cf26f7
+    pristine_git_object: 421343070b7ca3f8854d76f4a400c8b37bbafd39
   docs/models/invokepersonarequest.md:
     id: 7676a097a324
     last_write_checksum: sha1:1789071858871700decdbf71451c6148e38d37b4
@@ -141,8 +146,8 @@ trackedFiles:
     pristine_git_object: 026b2e6d6c9b0d50a6d962093a7a94f12f2b6fff
   docs/sdks/personaorchestration/README.md:
     id: cbdb3c6c15f4
-    last_write_checksum: sha1:0fc0a381a5662443ba674c23d53f63aee0674148
-    pristine_git_object: 5566c37998dbc67e9b374ea253413149559c8bdc
+    last_write_checksum: sha1:696c235619d5b9b2a7b76a0cc6b3d6d891c74e62
+    pristine_git_object: 2eb18ff97db368b91d2576deeaa51de52a3b54c0
   docs/sdks/statelessexecution/README.md:
     id: a481385e63cb
     last_write_checksum: sha1:27db914d0b127ce0f7fd7754ea6a69bde4df2ee9
@@ -157,8 +162,8 @@ trackedFiles:
     pristine_git_object: c00200cfd072e9febac5d6be783da1925d11dac0
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:08fc18c086e452600f3441679ef7679fbd5428e6
-    pristine_git_object: 1866f5eaea655d3f3e1d52ebf09c212185db39d2
+    last_write_checksum: sha1:78cb702f2eee97bddb774d477cef7b0336385965
+    pristine_git_object: 16830a645be3be23292ce47e41d9585cafdb069d
   scripts/publish.sh:
     id: fe273b08f514
     last_write_checksum: sha1:adc9b741c12ad1591ab4870eabe20f0d0a86cd1a
@@ -181,8 +186,8 @@ trackedFiles:
     pristine_git_object: 984dac8c8d0b7e6fa1981a5544159267affed91e
   src/ajayji/_version.py:
     id: 756349a8cde0
-    last_write_checksum: sha1:6d1e47eb2acc5b598556548cf08f98496498a7c7
-    pristine_git_object: 2f0151a65600d1f66ca1433443258e9062a73d40
+    last_write_checksum: sha1:3a7d3a92ea21233f9c06154b643764aec9c337dd
+    pristine_git_object: bc171deb39ebd0f2cb5a3668393d527508bb2624
   src/ajayji/basesdk.py:
     id: 4fd15b606549
     last_write_checksum: sha1:fa213ff642bd370b8a25fdf26d4de54e733088e4
@@ -229,8 +234,8 @@ trackedFiles:
     pristine_git_object: 2955873b6d6b009fa5e6deb00141d33db10728c5
   src/ajayji/models/__init__.py:
     id: 72a75b3df0b6
-    last_write_checksum: sha1:1f31855dd0c9c1fd5eb9d368e5f6b18ace9df3c3
-    pristine_git_object: 6f1f1930d6037ebb9f0ea2e8b87806831f5fc930
+    last_write_checksum: sha1:b67e60aa90b5711f7217c59d5f7b608921434200
+    pristine_git_object: df7f5a0801de736c92816e5fcfdf040473552793
   src/ajayji/models/askop.py:
     id: 6188834751b7
     last_write_checksum: sha1:ffc019debb70cad00fff8485439caf4cbb84aada
@@ -255,6 +260,10 @@ trackedFiles:
     id: 6add5f5b928e
     last_write_checksum: sha1:317b3100a5178fbab0437745648bb66266172cd5
     pristine_git_object: c87613e21bbc5b2ffb604872d64e9446e7b18148
+  src/ajayji/models/get_persona_canvasop.py:
+    id: d1babb5e43d6
+    last_write_checksum: sha1:4e64d7c5f65c11d103e56e41ed8993dc3beef39e
+    pristine_git_object: 74fa8a967468c9866ff6e2adc661b6a04d1169e2
   src/ajayji/models/invoke_personaop.py:
     id: 433ac4894099
     last_write_checksum: sha1:7ce8e10b4bcced5f49de3b234708bd9597feb5c9
@@ -281,8 +290,8 @@ trackedFiles:
     pristine_git_object: 2852ddda73f1e8e2c9f2252bba02a85dd9015944
   src/ajayji/persona_orchestration.py:
     id: f9370200998c
-    last_write_checksum: sha1:7e1d3e78415270cbeda1193abb5eb5ba52dcfdc6
-    pristine_git_object: 54d9b3d37c43023ee32a41acf10aee66088f9605
+    last_write_checksum: sha1:3749e7e0edb1007100ff3c0e45a88701c9268aaa
+    pristine_git_object: 59cb3dc8efd1c5fccc7d5c4cbdb286c202821756
   src/ajayji/py.typed:
     id: 54a48a422a7f
     last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60
@@ -463,5 +472,21 @@ examples:
       responses:
         "200":
           application/json: {}
+  getPersonaCanvas:
+    speakeasy-default-get-persona-canvas:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          image/png: "x-file: example.file"
+  get_persona_canvas:
+    speakeasy-default-get-persona-canvas:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          image/png: "x-file: example.file"
 examplesVersion: 1.0.2
 generatedTests: {}

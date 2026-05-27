@@ -5,6 +5,7 @@
 ### Available Operations
 
 * [create_persona](#create_persona) - Create or Update a Persona
+* [get_persona_canvas](#get_persona_canvas) - Get the Canvas Graphic
 * [invoke_persona](#invoke_persona) - Invoke a Persona Webhook
 
 ## create_persona
@@ -41,6 +42,43 @@ with SDK() as sdk:
 ### Response
 
 **[models.CreatePersonaResponseBody](../../models/createpersonaresponsebody.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.SDKDefaultError | 4XX, 5XX               | \*/\*                  |
+
+## get_persona_canvas
+
+Returns a generated PNG image of the persona's orchestration canvas.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="get_persona_canvas" method="get" path="/api/v1/personas/{id}/canvas.png" -->
+```python
+from ajayji import SDK
+
+
+with SDK() as sdk:
+
+    res = sdk.persona_orchestration.get_persona_canvas(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | The ID of the persona to generate the canvas for                    |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[httpx.Response](../../models/.md)**
 
 ### Errors
 
