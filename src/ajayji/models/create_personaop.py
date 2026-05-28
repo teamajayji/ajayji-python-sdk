@@ -14,10 +14,34 @@ class CreatePersonaRequestBodyTypedDict(TypedDict):
     r"""The human-readable name of the Persona."""
     model: str
     r"""The filename of the LLM to use (e.g., llama-3-8b.gguf)."""
+    embedding_model_name: NotRequired[Nullable[str]]
+    r"""The name of the associated Embedding Model."""
+    enable_chat: NotRequired[Nullable[bool]]
+    r"""Whether the chat interface is enabled for this persona."""
+    enable_webhook: NotRequired[Nullable[bool]]
+    r"""Whether the webhook interface is enabled for this persona."""
+    global_events: NotRequired[Nullable[List[str]]]
+    r"""Array of Global Event Trigger IDs associated with this persona."""
+    input_parser_id: NotRequired[Nullable[str]]
+    r"""The ID of the Javascript parser for incoming data."""
+    input_topic: NotRequired[Nullable[str]]
+    r"""The async message queue topic for inbound messages."""
     mcp_servers: NotRequired[List[str]]
     r"""A list of MCP Server SSE URIs (e.g., http://127.0.0.1:8000/sse) to connect to during orchestration."""
+    output_parser_id: NotRequired[Nullable[str]]
+    r"""The ID of the Javascript parser for outgoing data."""
+    output_topic: NotRequired[Nullable[str]]
+    r"""The async message queue topic for outbound messages."""
     system_prompt: NotRequired[Nullable[str]]
     r"""Optional system prompt to override the default."""
+    tool_call_parser_id: NotRequired[Nullable[str]]
+    r"""The ID of the Javascript parser for modifying tool calls."""
+    tool_ids: NotRequired[Nullable[List[str]]]
+    r"""Array of Standalone Tool IDs associated with this persona."""
+    tool_response_parser_id: NotRequired[Nullable[str]]
+    r"""The ID of the Javascript parser for modifying tool responses."""
+    vector_store_name: NotRequired[Nullable[str]]
+    r"""The name of the associated Vector Store database."""
 
 
 class CreatePersonaRequestBody(BaseModel):
@@ -30,16 +54,85 @@ class CreatePersonaRequestBody(BaseModel):
     model: str
     r"""The filename of the LLM to use (e.g., llama-3-8b.gguf)."""
 
+    embedding_model_name: OptionalNullable[str] = UNSET
+    r"""The name of the associated Embedding Model."""
+
+    enable_chat: OptionalNullable[bool] = UNSET
+    r"""Whether the chat interface is enabled for this persona."""
+
+    enable_webhook: OptionalNullable[bool] = UNSET
+    r"""Whether the webhook interface is enabled for this persona."""
+
+    global_events: OptionalNullable[List[str]] = UNSET
+    r"""Array of Global Event Trigger IDs associated with this persona."""
+
+    input_parser_id: OptionalNullable[str] = UNSET
+    r"""The ID of the Javascript parser for incoming data."""
+
+    input_topic: OptionalNullable[str] = UNSET
+    r"""The async message queue topic for inbound messages."""
+
     mcp_servers: Optional[List[str]] = None
     r"""A list of MCP Server SSE URIs (e.g., http://127.0.0.1:8000/sse) to connect to during orchestration."""
+
+    output_parser_id: OptionalNullable[str] = UNSET
+    r"""The ID of the Javascript parser for outgoing data."""
+
+    output_topic: OptionalNullable[str] = UNSET
+    r"""The async message queue topic for outbound messages."""
 
     system_prompt: OptionalNullable[str] = UNSET
     r"""Optional system prompt to override the default."""
 
+    tool_call_parser_id: OptionalNullable[str] = UNSET
+    r"""The ID of the Javascript parser for modifying tool calls."""
+
+    tool_ids: OptionalNullable[List[str]] = UNSET
+    r"""Array of Standalone Tool IDs associated with this persona."""
+
+    tool_response_parser_id: OptionalNullable[str] = UNSET
+    r"""The ID of the Javascript parser for modifying tool responses."""
+
+    vector_store_name: OptionalNullable[str] = UNSET
+    r"""The name of the associated Vector Store database."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["mcp_servers", "system_prompt"])
-        nullable_fields = set(["system_prompt"])
+        optional_fields = set(
+            [
+                "embedding_model_name",
+                "enable_chat",
+                "enable_webhook",
+                "global_events",
+                "input_parser_id",
+                "input_topic",
+                "mcp_servers",
+                "output_parser_id",
+                "output_topic",
+                "system_prompt",
+                "tool_call_parser_id",
+                "tool_ids",
+                "tool_response_parser_id",
+                "vector_store_name",
+            ]
+        )
+        nullable_fields = set(
+            [
+                "embedding_model_name",
+                "enable_chat",
+                "enable_webhook",
+                "global_events",
+                "input_parser_id",
+                "input_topic",
+                "output_parser_id",
+                "output_topic",
+                "system_prompt",
+                "tool_call_parser_id",
+                "tool_ids",
+                "tool_response_parser_id",
+                "vector_store_name",
+            ]
+        )
         serialized = handler(self)
         m = {}
 

@@ -16,8 +16,20 @@ class PersonaOrchestration(BaseSDK):
         agent_id: str,
         agent_name: str,
         model: str,
+        embedding_model_name: OptionalNullable[str] = UNSET,
+        enable_chat: OptionalNullable[bool] = UNSET,
+        enable_webhook: OptionalNullable[bool] = UNSET,
+        global_events: OptionalNullable[List[str]] = UNSET,
+        input_parser_id: OptionalNullable[str] = UNSET,
+        input_topic: OptionalNullable[str] = UNSET,
         mcp_servers: Optional[List[str]] = None,
+        output_parser_id: OptionalNullable[str] = UNSET,
+        output_topic: OptionalNullable[str] = UNSET,
         system_prompt: OptionalNullable[str] = UNSET,
+        tool_call_parser_id: OptionalNullable[str] = UNSET,
+        tool_ids: OptionalNullable[List[str]] = UNSET,
+        tool_response_parser_id: OptionalNullable[str] = UNSET,
+        vector_store_name: OptionalNullable[str] = UNSET,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -30,8 +42,20 @@ class PersonaOrchestration(BaseSDK):
         :param agent_id: The unique ID for this Persona.
         :param agent_name: The human-readable name of the Persona.
         :param model: The filename of the LLM to use (e.g., llama-3-8b.gguf).
+        :param embedding_model_name: The name of the associated Embedding Model.
+        :param enable_chat: Whether the chat interface is enabled for this persona.
+        :param enable_webhook: Whether the webhook interface is enabled for this persona.
+        :param global_events: Array of Global Event Trigger IDs associated with this persona.
+        :param input_parser_id: The ID of the Javascript parser for incoming data.
+        :param input_topic: The async message queue topic for inbound messages.
         :param mcp_servers: A list of MCP Server SSE URIs (e.g., http://127.0.0.1:8000/sse) to connect to during orchestration.
+        :param output_parser_id: The ID of the Javascript parser for outgoing data.
+        :param output_topic: The async message queue topic for outbound messages.
         :param system_prompt: Optional system prompt to override the default.
+        :param tool_call_parser_id: The ID of the Javascript parser for modifying tool calls.
+        :param tool_ids: Array of Standalone Tool IDs associated with this persona.
+        :param tool_response_parser_id: The ID of the Javascript parser for modifying tool responses.
+        :param vector_store_name: The name of the associated Vector Store database.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -50,9 +74,21 @@ class PersonaOrchestration(BaseSDK):
         request = models.CreatePersonaRequestBody(
             agent_id=agent_id,
             agent_name=agent_name,
+            embedding_model_name=embedding_model_name,
+            enable_chat=enable_chat,
+            enable_webhook=enable_webhook,
+            global_events=global_events,
+            input_parser_id=input_parser_id,
+            input_topic=input_topic,
             mcp_servers=mcp_servers,
             model=model,
+            output_parser_id=output_parser_id,
+            output_topic=output_topic,
             system_prompt=system_prompt,
+            tool_call_parser_id=tool_call_parser_id,
+            tool_ids=tool_ids,
+            tool_response_parser_id=tool_response_parser_id,
+            vector_store_name=vector_store_name,
         )
 
         req = self._build_request(
@@ -112,8 +148,20 @@ class PersonaOrchestration(BaseSDK):
         agent_id: str,
         agent_name: str,
         model: str,
+        embedding_model_name: OptionalNullable[str] = UNSET,
+        enable_chat: OptionalNullable[bool] = UNSET,
+        enable_webhook: OptionalNullable[bool] = UNSET,
+        global_events: OptionalNullable[List[str]] = UNSET,
+        input_parser_id: OptionalNullable[str] = UNSET,
+        input_topic: OptionalNullable[str] = UNSET,
         mcp_servers: Optional[List[str]] = None,
+        output_parser_id: OptionalNullable[str] = UNSET,
+        output_topic: OptionalNullable[str] = UNSET,
         system_prompt: OptionalNullable[str] = UNSET,
+        tool_call_parser_id: OptionalNullable[str] = UNSET,
+        tool_ids: OptionalNullable[List[str]] = UNSET,
+        tool_response_parser_id: OptionalNullable[str] = UNSET,
+        vector_store_name: OptionalNullable[str] = UNSET,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -126,8 +174,20 @@ class PersonaOrchestration(BaseSDK):
         :param agent_id: The unique ID for this Persona.
         :param agent_name: The human-readable name of the Persona.
         :param model: The filename of the LLM to use (e.g., llama-3-8b.gguf).
+        :param embedding_model_name: The name of the associated Embedding Model.
+        :param enable_chat: Whether the chat interface is enabled for this persona.
+        :param enable_webhook: Whether the webhook interface is enabled for this persona.
+        :param global_events: Array of Global Event Trigger IDs associated with this persona.
+        :param input_parser_id: The ID of the Javascript parser for incoming data.
+        :param input_topic: The async message queue topic for inbound messages.
         :param mcp_servers: A list of MCP Server SSE URIs (e.g., http://127.0.0.1:8000/sse) to connect to during orchestration.
+        :param output_parser_id: The ID of the Javascript parser for outgoing data.
+        :param output_topic: The async message queue topic for outbound messages.
         :param system_prompt: Optional system prompt to override the default.
+        :param tool_call_parser_id: The ID of the Javascript parser for modifying tool calls.
+        :param tool_ids: Array of Standalone Tool IDs associated with this persona.
+        :param tool_response_parser_id: The ID of the Javascript parser for modifying tool responses.
+        :param vector_store_name: The name of the associated Vector Store database.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -146,9 +206,21 @@ class PersonaOrchestration(BaseSDK):
         request = models.CreatePersonaRequestBody(
             agent_id=agent_id,
             agent_name=agent_name,
+            embedding_model_name=embedding_model_name,
+            enable_chat=enable_chat,
+            enable_webhook=enable_webhook,
+            global_events=global_events,
+            input_parser_id=input_parser_id,
+            input_topic=input_topic,
             mcp_servers=mcp_servers,
             model=model,
+            output_parser_id=output_parser_id,
+            output_topic=output_topic,
             system_prompt=system_prompt,
+            tool_call_parser_id=tool_call_parser_id,
+            tool_ids=tool_ids,
+            tool_response_parser_id=tool_response_parser_id,
+            vector_store_name=vector_store_name,
         )
 
         req = self._build_request_async(
@@ -548,60 +620,34 @@ class PersonaOrchestration(BaseSDK):
 
     def display(self, id: str):
         """
-        Displays the visual Orchestration Canvas of the Persona inline within a Jupyter Notebook.
-        
-        Args:
-            id: The ID of the persona to display.
+        Helper method to fetch the canvas PNG and display it inline in a Jupyter Notebook.
         """
         try:
-            from IPython.display import Image, display as ipy_display
-        except ImportError:
-            print("The .display() method requires an IPython/Jupyter environment. Please run inside a notebook.")
-            return
-
-        try:
-            # Call the synchronous generated method
-            response = self.get_persona_canvas(id=id)
+            from IPython.display import display as ipython_display, Image
             
-            # Extract the raw bytes, explicitly calling .read() if it's a streaming HTTPX response
-            if hasattr(response, 'read') and callable(response.read):
-                png_bytes = response.read()
-            elif hasattr(response, 'content'):
-                png_bytes = response.content
+            res = self.get_persona_canvas(id=id)
+            if res.status_code == 200:
+                res.read()  # Explicitly read the streaming response
+                ipython_display(Image(data=res.content, format='png'))
             else:
-                png_bytes = response
-                
-            ipy_display(Image(data=png_bytes))
-        except Exception as e:
-            print(f"Failed to display canvas: {e}")
-
+                res.read()
+                print(f"Failed to load canvas: {res.status_code} - {res.text}")
+        except ImportError:
+            print("IPython is required to display images inline.")
+            
     async def display_async(self, id: str):
         """
-        Asynchronously displays the visual Orchestration Canvas of the Persona inline within a Jupyter Notebook.
-        
-        Args:
-            id: The ID of the persona to display.
+        Async helper method to fetch the canvas PNG and display it inline in a Jupyter Notebook.
         """
         try:
-            from IPython.display import Image, display as ipy_display
-        except ImportError:
-            print("The .display_async() method requires an IPython/Jupyter environment.")
-            return
-
-        try:
-            # Call the asynchronous generated method
-            response = await self.get_persona_canvas_async(id=id)
+            from IPython.display import display as ipython_display, Image
             
-            # Read the async stream
-            if hasattr(response, 'aread') and callable(response.aread):
-                png_bytes = await response.aread()
-            elif hasattr(response, 'read') and callable(response.read):
-                png_bytes = response.read()
-            elif hasattr(response, 'content'):
-                png_bytes = response.content
+            res = await self.get_persona_canvas_async(id=id)
+            if res.status_code == 200:
+                await res.aread()  # Explicitly read the async streaming response
+                ipython_display(Image(data=res.content, format='png'))
             else:
-                png_bytes = response
-                
-            ipy_display(Image(data=png_bytes))
-        except Exception as e:
-            print(f"Failed to display canvas: {e}")
+                await res.aread()
+                print(f"Failed to load canvas: {res.status_code} - {res.text}")
+        except ImportError:
+            print("IPython is required to display images inline.")

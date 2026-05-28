@@ -1,16 +1,16 @@
 lockVersion: 2.0.0
 id: aca66aee-3a3d-451d-a849-fded39891b8b
 management:
-  docChecksum: 142215318d9953d0fff69f349416cf18
+  docChecksum: d5768514224922ae677f0066776ce29f
   docVersion: 1.0.1
   speakeasyVersion: 1.763.1
   generationVersion: 2.884.4
-  releaseVersion: 0.2.2
-  configChecksum: 5d3e5554e53d99023aa92f963993ac3d
+  releaseVersion: 0.2.3
+  configChecksum: 9e24c325bbf5297c0c007b2b583f2d4b
 persistentEdits:
-  generation_id: 0380eef2-5069-4e73-b0f9-d30f90135cdd
-  pristine_commit_hash: 9d4865cc0ebb863260061fc7798998dce42381d6
-  pristine_tree_hash: e8623450577b38965d357459a3db964ca9bcb683
+  generation_id: 6b6764ef-5bab-4393-8ebf-261bf3ccc1ef
+  pristine_commit_hash: 5100e3b1c98746ac0e9188b04fc9aead94fbac79
+  pristine_tree_hash: b7d5e093c7c07d0ddc40e03c11a1be6787ab9bf7
 features:
   python:
     additionalDependencies: 1.0.0
@@ -62,8 +62,8 @@ trackedFiles:
     pristine_git_object: 256108e44d70a4c48feaec70acf9662ef1d5aaa2
   docs/models/createpersonarequestbody.md:
     id: a46dc3964a17
-    last_write_checksum: sha1:9615568a71eb703fdb2dd5eee11d4002ad9a2b8a
-    pristine_git_object: af53b2f09a905554d1ec9ec388eff33a98cbb470
+    last_write_checksum: sha1:a873082a7243c11e57a9caff296716a090b7175c
+    pristine_git_object: 4689fc32cda20747b15bcb1d8587d8dd4e455a4b
   docs/models/createpersonaresponsebody.md:
     id: e134c60d2b88
     last_write_checksum: sha1:d4d652b5c49e9ad2b2157657c94aa36679a68c42
@@ -146,8 +146,8 @@ trackedFiles:
     pristine_git_object: 026b2e6d6c9b0d50a6d962093a7a94f12f2b6fff
   docs/sdks/personaorchestration/README.md:
     id: cbdb3c6c15f4
-    last_write_checksum: sha1:696c235619d5b9b2a7b76a0cc6b3d6d891c74e62
-    pristine_git_object: 2eb18ff97db368b91d2576deeaa51de52a3b54c0
+    last_write_checksum: sha1:5ec4a668730bc8d8b65ac8661211134ee6380ab6
+    pristine_git_object: 3fef8b67e0b88db550af9a2ab1b248ae4fc5dce2
   docs/sdks/statelessexecution/README.md:
     id: a481385e63cb
     last_write_checksum: sha1:27db914d0b127ce0f7fd7754ea6a69bde4df2ee9
@@ -162,8 +162,8 @@ trackedFiles:
     pristine_git_object: c00200cfd072e9febac5d6be783da1925d11dac0
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:78cb702f2eee97bddb774d477cef7b0336385965
-    pristine_git_object: 16830a645be3be23292ce47e41d9585cafdb069d
+    last_write_checksum: sha1:9d47cc5ba9446820beffe1d47e2878889073d4f1
+    pristine_git_object: 0932d4202faddcf189adb552869e7b01eba01f8a
   scripts/publish.sh:
     id: fe273b08f514
     last_write_checksum: sha1:adc9b741c12ad1591ab4870eabe20f0d0a86cd1a
@@ -186,8 +186,8 @@ trackedFiles:
     pristine_git_object: 984dac8c8d0b7e6fa1981a5544159267affed91e
   src/ajayji/_version.py:
     id: 756349a8cde0
-    last_write_checksum: sha1:3a7d3a92ea21233f9c06154b643764aec9c337dd
-    pristine_git_object: bc171deb39ebd0f2cb5a3668393d527508bb2624
+    last_write_checksum: sha1:69ec970e9a0616776b74fbf83d1fbc1313705767
+    pristine_git_object: 8d268e0ebee771f888cc6d66811ead1319df7e5d
   src/ajayji/basesdk.py:
     id: 4fd15b606549
     last_write_checksum: sha1:fa213ff642bd370b8a25fdf26d4de54e733088e4
@@ -250,8 +250,8 @@ trackedFiles:
     pristine_git_object: d65dacc2b22b79ba6d7d60355e2fabd3ea13fb73
   src/ajayji/models/create_personaop.py:
     id: 222df2c7e55c
-    last_write_checksum: sha1:192186716aeca6c6eba44c65b3c121c6e382c5ae
-    pristine_git_object: 58cac1e09657d537ab85a4fd8527cf5d09136dd1
+    last_write_checksum: sha1:5fdb3d1e73b26a8784d0b4163472c16b520a39c4
+    pristine_git_object: 9b80e59ab567c373223ded0e0144581139ef978d
   src/ajayji/models/create_vector_dbop.py:
     id: 38006296204e
     last_write_checksum: sha1:58d2d7768a4bf572acd965c9f083884cc5b9e26d
@@ -290,8 +290,8 @@ trackedFiles:
     pristine_git_object: 2852ddda73f1e8e2c9f2252bba02a85dd9015944
   src/ajayji/persona_orchestration.py:
     id: f9370200998c
-    last_write_checksum: sha1:3749e7e0edb1007100ff3c0e45a88701c9268aaa
-    pristine_git_object: 59cb3dc8efd1c5fccc7d5c4cbdb286c202821756
+    last_write_checksum: sha1:4bfa216ed520d28ffd0ade2908098587e772b0db
+    pristine_git_object: d3c59106d3f2a2b4bfcb9cb6ea22c404f9a6bc02
   src/ajayji/py.typed:
     id: 54a48a422a7f
     last_write_checksum: sha1:8efc425ffe830805ffcc0f3055871bdcdc542c60

@@ -132,6 +132,58 @@ paths:
                   type: string
                   nullable: true
                   description: Optional system prompt to override the default.
+                enable_chat:
+                  type: boolean
+                  nullable: true
+                  description: Whether the chat interface is enabled for this persona.
+                enable_webhook:
+                  type: boolean
+                  nullable: true
+                  description: Whether the webhook interface is enabled for this persona.
+                vector_store_name:
+                  type: string
+                  nullable: true
+                  description: The name of the associated Vector Store database.
+                embedding_model_name:
+                  type: string
+                  nullable: true
+                  description: The name of the associated Embedding Model.
+                global_events:
+                  type: array
+                  items:
+                    type: string
+                  nullable: true
+                  description: Array of Global Event Trigger IDs associated with this persona.
+                tool_ids:
+                  type: array
+                  items:
+                    type: string
+                  nullable: true
+                  description: Array of Standalone Tool IDs associated with this persona.
+                input_topic:
+                  type: string
+                  nullable: true
+                  description: The async message queue topic for inbound messages.
+                output_topic:
+                  type: string
+                  nullable: true
+                  description: The async message queue topic for outbound messages.
+                input_parser_id:
+                  type: string
+                  nullable: true
+                  description: The ID of the Javascript parser for incoming data.
+                output_parser_id:
+                  type: string
+                  nullable: true
+                  description: The ID of the Javascript parser for outgoing data.
+                tool_call_parser_id:
+                  type: string
+                  nullable: true
+                  description: The ID of the Javascript parser for modifying tool calls.
+                tool_response_parser_id:
+                  type: string
+                  nullable: true
+                  description: The ID of the Javascript parser for modifying tool responses.
       responses:
         '200':
           description: Persona created/updated successfully
