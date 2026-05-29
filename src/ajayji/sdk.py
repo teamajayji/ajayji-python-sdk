@@ -19,6 +19,7 @@ if TYPE_CHECKING:
     from ajayji.mcp_management import McpManagement
     from ajayji.memory_management import MemoryManagement
     from ajayji.model_management import ModelManagement
+    from ajayji.parser_management import ParserManagement
     from ajayji.persona_orchestration import PersonaOrchestration
     from ajayji.stateless_execution import StatelessExecution
 
@@ -27,6 +28,7 @@ class SDK(BaseSDK):
     r"""Ajayji Local SDK API: Local daemon API for the Ajayji application, allowing native Python SDK integration for Data Scientists and developers."""
 
     mcp_management: "McpManagement"
+    parser_management: "ParserManagement"
     persona_orchestration: "PersonaOrchestration"
     stateless_execution: "StatelessExecution"
     data_ingestion_and_tools: "DataIngestionAndTools"
@@ -34,6 +36,7 @@ class SDK(BaseSDK):
     memory_management: "MemoryManagement"
     _sub_sdk_map = {
         "mcp_management": ("ajayji.mcp_management", "McpManagement"),
+        "parser_management": ("ajayji.parser_management", "ParserManagement"),
         "persona_orchestration": (
             "ajayji.persona_orchestration",
             "PersonaOrchestration",

@@ -5,57 +5,30 @@ from ajayji import errors, models, utils
 from ajayji._hooks import HookContext
 from ajayji.types import OptionalNullable, UNSET
 from ajayji.utils.unmarshal_json_response import unmarshal_json_response
-import httpx
-from typing import Any, Dict, List, Mapping, Optional
+from typing import Mapping, Optional
 
 
-class PersonaOrchestration(BaseSDK):
-    def create_persona(
+class ParserManagement(BaseSDK):
+    def create_parser(
         self,
         *,
-        agent_id: str,
-        agent_name: str,
-        model: str,
-        embedding_model_name: OptionalNullable[str] = UNSET,
-        enable_chat: OptionalNullable[bool] = UNSET,
-        enable_webhook: OptionalNullable[bool] = UNSET,
-        global_events: OptionalNullable[List[str]] = UNSET,
-        input_parser_id: OptionalNullable[str] = UNSET,
-        input_topic: OptionalNullable[str] = UNSET,
-        mcp_servers: Optional[List[str]] = None,
-        output_parser_id: OptionalNullable[str] = UNSET,
-        output_topic: OptionalNullable[str] = UNSET,
-        system_prompt: OptionalNullable[str] = UNSET,
-        tool_call_parser_id: OptionalNullable[str] = UNSET,
-        tool_ids: OptionalNullable[List[str]] = UNSET,
-        tool_response_parser_id: OptionalNullable[str] = UNSET,
-        vector_store_name: OptionalNullable[str] = UNSET,
+        name: str,
+        script: str,
+        description: OptionalNullable[str] = UNSET,
+        file_path: OptionalNullable[str] = UNSET,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.CreatePersonaResponseBody:
-        r"""Create or Update a Persona
+    ) -> models.CreateParserResponseBody:
+        r"""Create a Javascript Parser
 
-        Creates a new Persona or updates an existing one, optionally registering MCP servers for bi-directional tool execution.
+        Provisions a new Javascript parser script for modifying inputs, outputs, and tool calls.
 
-        :param agent_id: The unique ID for this Persona.
-        :param agent_name: The human-readable name of the Persona.
-        :param model: The filename of the LLM to use (e.g., llama-3-8b.gguf).
-        :param embedding_model_name: The name of the associated Embedding Model.
-        :param enable_chat: Whether the chat interface is enabled for this persona.
-        :param enable_webhook: Whether the webhook interface is enabled for this persona.
-        :param global_events: Array of Global Event Trigger IDs associated with this persona.
-        :param input_parser_id: The ID of the Javascript parser for incoming data.
-        :param input_topic: The async message queue topic for inbound messages.
-        :param mcp_servers: A list of MCP Server SSE URIs (e.g., http://127.0.0.1:8000/sse) to connect to during orchestration.
-        :param output_parser_id: The ID of the Javascript parser for outgoing data.
-        :param output_topic: The async message queue topic for outbound messages.
-        :param system_prompt: Optional system prompt to override the default.
-        :param tool_call_parser_id: The ID of the Javascript parser for modifying tool calls.
-        :param tool_ids: Array of Standalone Tool IDs associated with this persona.
-        :param tool_response_parser_id: The ID of the Javascript parser for modifying tool responses.
-        :param vector_store_name: The name of the associated Vector Store database.
+        :param name: The display name of the parser.
+        :param script: The raw Javascript containing a `parse(rawInput)` function.
+        :param description: An optional description of what the parser does.
+        :param file_path: Optional filepath associated with this parser.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -71,29 +44,16 @@ class PersonaOrchestration(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.CreatePersonaRequestBody(
-            agent_id=agent_id,
-            agent_name=agent_name,
-            embedding_model_name=embedding_model_name,
-            enable_chat=enable_chat,
-            enable_webhook=enable_webhook,
-            global_events=global_events,
-            input_parser_id=input_parser_id,
-            input_topic=input_topic,
-            mcp_servers=mcp_servers,
-            model=model,
-            output_parser_id=output_parser_id,
-            output_topic=output_topic,
-            system_prompt=system_prompt,
-            tool_call_parser_id=tool_call_parser_id,
-            tool_ids=tool_ids,
-            tool_response_parser_id=tool_response_parser_id,
-            vector_store_name=vector_store_name,
+        request = models.CreateParserRequestBody(
+            description=description,
+            file_path=file_path,
+            name=name,
+            script=script,
         )
 
         req = self._build_request(
             method="POST",
-            path="/api/v1/personas",
+            path="/api/v1/parsers",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -104,7 +64,7 @@ class PersonaOrchestration(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CreatePersonaRequestBody
+                request, False, False, "json", models.CreateParserRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -122,7 +82,7 @@ class PersonaOrchestration(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="create_persona",
+                operation_id="create_parser",
                 oauth2_scopes=None,
                 security_source=None,
             ),
@@ -132,7 +92,7 @@ class PersonaOrchestration(BaseSDK):
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.CreatePersonaResponseBody, http_res)
+            return unmarshal_json_response(models.CreateParserResponseBody, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
@@ -142,52 +102,26 @@ class PersonaOrchestration(BaseSDK):
 
         raise errors.SDKDefaultError("Unexpected response received", http_res)
 
-    async def create_persona_async(
+    async def create_parser_async(
         self,
         *,
-        agent_id: str,
-        agent_name: str,
-        model: str,
-        embedding_model_name: OptionalNullable[str] = UNSET,
-        enable_chat: OptionalNullable[bool] = UNSET,
-        enable_webhook: OptionalNullable[bool] = UNSET,
-        global_events: OptionalNullable[List[str]] = UNSET,
-        input_parser_id: OptionalNullable[str] = UNSET,
-        input_topic: OptionalNullable[str] = UNSET,
-        mcp_servers: Optional[List[str]] = None,
-        output_parser_id: OptionalNullable[str] = UNSET,
-        output_topic: OptionalNullable[str] = UNSET,
-        system_prompt: OptionalNullable[str] = UNSET,
-        tool_call_parser_id: OptionalNullable[str] = UNSET,
-        tool_ids: OptionalNullable[List[str]] = UNSET,
-        tool_response_parser_id: OptionalNullable[str] = UNSET,
-        vector_store_name: OptionalNullable[str] = UNSET,
+        name: str,
+        script: str,
+        description: OptionalNullable[str] = UNSET,
+        file_path: OptionalNullable[str] = UNSET,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.CreatePersonaResponseBody:
-        r"""Create or Update a Persona
+    ) -> models.CreateParserResponseBody:
+        r"""Create a Javascript Parser
 
-        Creates a new Persona or updates an existing one, optionally registering MCP servers for bi-directional tool execution.
+        Provisions a new Javascript parser script for modifying inputs, outputs, and tool calls.
 
-        :param agent_id: The unique ID for this Persona.
-        :param agent_name: The human-readable name of the Persona.
-        :param model: The filename of the LLM to use (e.g., llama-3-8b.gguf).
-        :param embedding_model_name: The name of the associated Embedding Model.
-        :param enable_chat: Whether the chat interface is enabled for this persona.
-        :param enable_webhook: Whether the webhook interface is enabled for this persona.
-        :param global_events: Array of Global Event Trigger IDs associated with this persona.
-        :param input_parser_id: The ID of the Javascript parser for incoming data.
-        :param input_topic: The async message queue topic for inbound messages.
-        :param mcp_servers: A list of MCP Server SSE URIs (e.g., http://127.0.0.1:8000/sse) to connect to during orchestration.
-        :param output_parser_id: The ID of the Javascript parser for outgoing data.
-        :param output_topic: The async message queue topic for outbound messages.
-        :param system_prompt: Optional system prompt to override the default.
-        :param tool_call_parser_id: The ID of the Javascript parser for modifying tool calls.
-        :param tool_ids: Array of Standalone Tool IDs associated with this persona.
-        :param tool_response_parser_id: The ID of the Javascript parser for modifying tool responses.
-        :param vector_store_name: The name of the associated Vector Store database.
+        :param name: The display name of the parser.
+        :param script: The raw Javascript containing a `parse(rawInput)` function.
+        :param description: An optional description of what the parser does.
+        :param file_path: Optional filepath associated with this parser.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -203,29 +137,16 @@ class PersonaOrchestration(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.CreatePersonaRequestBody(
-            agent_id=agent_id,
-            agent_name=agent_name,
-            embedding_model_name=embedding_model_name,
-            enable_chat=enable_chat,
-            enable_webhook=enable_webhook,
-            global_events=global_events,
-            input_parser_id=input_parser_id,
-            input_topic=input_topic,
-            mcp_servers=mcp_servers,
-            model=model,
-            output_parser_id=output_parser_id,
-            output_topic=output_topic,
-            system_prompt=system_prompt,
-            tool_call_parser_id=tool_call_parser_id,
-            tool_ids=tool_ids,
-            tool_response_parser_id=tool_response_parser_id,
-            vector_store_name=vector_store_name,
+        request = models.CreateParserRequestBody(
+            description=description,
+            file_path=file_path,
+            name=name,
+            script=script,
         )
 
         req = self._build_request_async(
             method="POST",
-            path="/api/v1/personas",
+            path="/api/v1/parsers",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -236,7 +157,7 @@ class PersonaOrchestration(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CreatePersonaRequestBody
+                request, False, False, "json", models.CreateParserRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -254,7 +175,7 @@ class PersonaOrchestration(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="create_persona",
+                operation_id="create_parser",
                 oauth2_scopes=None,
                 security_source=None,
             ),
@@ -264,7 +185,7 @@ class PersonaOrchestration(BaseSDK):
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.CreatePersonaResponseBody, http_res)
+            return unmarshal_json_response(models.CreateParserResponseBody, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
@@ -274,20 +195,18 @@ class PersonaOrchestration(BaseSDK):
 
         raise errors.SDKDefaultError("Unexpected response received", http_res)
 
-    def get_persona_canvas(
+    def list_parsers(
         self,
         *,
-        id: str,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> httpx.Response:
-        r"""Get the Canvas Graphic
+    ) -> models.ListParsersResponseBody:
+        r"""List all available Parsers
 
-        Returns a generated PNG image of the persona's orchestration canvas.
+        Retrieves a list of all provisioned Javascript parsers in the local database.
 
-        :param id: The ID of the persona to generate the canvas for
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -302,22 +221,17 @@ class PersonaOrchestration(BaseSDK):
             base_url = server_url
         else:
             base_url = self._get_url(base_url, url_variables)
-
-        request = models.GetPersonaCanvasRequest(
-            id=id,
-        )
-
         req = self._build_request(
             method="GET",
-            path="/api/v1/personas/{id}/canvas.png",
+            path="/parsers/list",
             base_url=base_url,
             url_variables=url_variables,
-            request=request,
+            request=None,
             request_body_required=False,
-            request_has_path_params=True,
+            request_has_path_params=False,
             request_has_query_params=False,
             user_agent_header="user-agent",
-            accept_header_value="image/png",
+            accept_header_value="application/json",
             http_headers=http_headers,
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -335,44 +249,38 @@ class PersonaOrchestration(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="get_persona_canvas",
+                operation_id="list_parsers",
                 oauth2_scopes=None,
                 security_source=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
-            stream=True,
             retry_config=retry_config,
         )
 
-        if utils.match_response(http_res, "200", "image/png"):
-            return http_res
-        if utils.match_response(http_res, ["404", "4XX"], "*"):
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.ListParsersResponseBody, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
         if utils.match_response(http_res, ["500", "5XX"], "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
 
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKDefaultError(
-            "Unexpected response received", http_res, http_res_text
-        )
+        raise errors.SDKDefaultError("Unexpected response received", http_res)
 
-    async def get_persona_canvas_async(
+    async def list_parsers_async(
         self,
         *,
-        id: str,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> httpx.Response:
-        r"""Get the Canvas Graphic
+    ) -> models.ListParsersResponseBody:
+        r"""List all available Parsers
 
-        Returns a generated PNG image of the persona's orchestration canvas.
+        Retrieves a list of all provisioned Javascript parsers in the local database.
 
-        :param id: The ID of the persona to generate the canvas for
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -387,22 +295,17 @@ class PersonaOrchestration(BaseSDK):
             base_url = server_url
         else:
             base_url = self._get_url(base_url, url_variables)
-
-        request = models.GetPersonaCanvasRequest(
-            id=id,
-        )
-
         req = self._build_request_async(
             method="GET",
-            path="/api/v1/personas/{id}/canvas.png",
+            path="/parsers/list",
             base_url=base_url,
             url_variables=url_variables,
-            request=request,
+            request=None,
             request_body_required=False,
-            request_has_path_params=True,
+            request_has_path_params=False,
             request_has_query_params=False,
             user_agent_header="user-agent",
-            accept_header_value="image/png",
+            accept_header_value="application/json",
             http_headers=http_headers,
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -420,46 +323,42 @@ class PersonaOrchestration(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="get_persona_canvas",
+                operation_id="list_parsers",
                 oauth2_scopes=None,
                 security_source=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
-            stream=True,
             retry_config=retry_config,
         )
 
-        if utils.match_response(http_res, "200", "image/png"):
-            return http_res
-        if utils.match_response(http_res, ["404", "4XX"], "*"):
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.ListParsersResponseBody, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
         if utils.match_response(http_res, ["500", "5XX"], "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
 
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKDefaultError(
-            "Unexpected response received", http_res, http_res_text
-        )
+        raise errors.SDKDefaultError("Unexpected response received", http_res)
 
-    def invoke_persona(
+    def test_parser(
         self,
         *,
-        id: str,
-        request_body: Dict[str, Any],
+        raw_input: str,
+        script: str,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.InvokePersonaResponseBody:
-        r"""Invoke a Persona Webhook
+    ) -> models.TestParserResponseBody:
+        r"""Test a Javascript Parser
 
-        Executes a full orchestration pipeline (Tools, JS Parsers, CoreML) for a specific Persona using a JSON payload.
+        Executes a Javascript parsing script statelessly to validate its output against a test input.
 
-        :param id: The unique ID of the ChatPersona to invoke.
-        :param request_body:
+        :param raw_input: The raw string (usually JSON) to feed into the parser.
+        :param script: The raw Javascript containing a `parse(rawInput)` function.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -475,25 +374,25 @@ class PersonaOrchestration(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.InvokePersonaRequest(
-            id=id,
-            request_body=request_body,
+        request = models.TestParserRequestBody(
+            raw_input=raw_input,
+            script=script,
         )
 
         req = self._build_request(
             method="POST",
-            path="/api/v1/personas/{id}/invoke",
+            path="/api/v1/parsers/test",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
             request_body_required=True,
-            request_has_path_params=True,
+            request_has_path_params=False,
             request_has_query_params=False,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
+                request, False, False, "json", models.TestParserRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -511,7 +410,7 @@ class PersonaOrchestration(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="invoke_persona",
+                operation_id="test_parser",
                 oauth2_scopes=None,
                 security_source=None,
             ),
@@ -521,8 +420,8 @@ class PersonaOrchestration(BaseSDK):
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.InvokePersonaResponseBody, http_res)
-        if utils.match_response(http_res, ["400", "403", "404", "4XX"], "*"):
+            return unmarshal_json_response(models.TestParserResponseBody, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
         if utils.match_response(http_res, ["500", "5XX"], "*"):
@@ -531,22 +430,22 @@ class PersonaOrchestration(BaseSDK):
 
         raise errors.SDKDefaultError("Unexpected response received", http_res)
 
-    async def invoke_persona_async(
+    async def test_parser_async(
         self,
         *,
-        id: str,
-        request_body: Dict[str, Any],
+        raw_input: str,
+        script: str,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.InvokePersonaResponseBody:
-        r"""Invoke a Persona Webhook
+    ) -> models.TestParserResponseBody:
+        r"""Test a Javascript Parser
 
-        Executes a full orchestration pipeline (Tools, JS Parsers, CoreML) for a specific Persona using a JSON payload.
+        Executes a Javascript parsing script statelessly to validate its output against a test input.
 
-        :param id: The unique ID of the ChatPersona to invoke.
-        :param request_body:
+        :param raw_input: The raw string (usually JSON) to feed into the parser.
+        :param script: The raw Javascript containing a `parse(rawInput)` function.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -562,25 +461,25 @@ class PersonaOrchestration(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.InvokePersonaRequest(
-            id=id,
-            request_body=request_body,
+        request = models.TestParserRequestBody(
+            raw_input=raw_input,
+            script=script,
         )
 
         req = self._build_request_async(
             method="POST",
-            path="/api/v1/personas/{id}/invoke",
+            path="/api/v1/parsers/test",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
             request_body_required=True,
-            request_has_path_params=True,
+            request_has_path_params=False,
             request_has_query_params=False,
             user_agent_header="user-agent",
             accept_header_value="application/json",
             http_headers=http_headers,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request.request_body, False, False, "json", Dict[str, Any]
+                request, False, False, "json", models.TestParserRequestBody
             ),
             allow_empty_value=None,
             timeout_ms=timeout_ms,
@@ -598,7 +497,7 @@ class PersonaOrchestration(BaseSDK):
             hook_ctx=HookContext(
                 config=self.sdk_configuration,
                 base_url=base_url or "",
-                operation_id="invoke_persona",
+                operation_id="test_parser",
                 oauth2_scopes=None,
                 security_source=None,
             ),
@@ -608,8 +507,8 @@ class PersonaOrchestration(BaseSDK):
         )
 
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.InvokePersonaResponseBody, http_res)
-        if utils.match_response(http_res, ["400", "403", "404", "4XX"], "*"):
+            return unmarshal_json_response(models.TestParserResponseBody, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
         if utils.match_response(http_res, ["500", "5XX"], "*"):
@@ -617,62 +516,3 @@ class PersonaOrchestration(BaseSDK):
             raise errors.SDKDefaultError("API error occurred", http_res, http_res_text)
 
         raise errors.SDKDefaultError("Unexpected response received", http_res)
-    def display(self, id: str):
-        """
-        Displays the visual Orchestration Canvas of the Persona inline within a Jupyter Notebook.
-        
-        Args:
-            id: The ID of the persona to display.
-        """
-        try:
-            from IPython.display import Image, display as ipy_display
-        except ImportError:
-            print("The .display() method requires an IPython/Jupyter environment. Please run inside a notebook.")
-            return
-
-        try:
-            # Call the synchronous generated method
-            response = self.get_persona_canvas(id=id)
-            
-            # Extract the raw bytes, explicitly calling .read() if it's a streaming HTTPX response
-            if hasattr(response, 'read') and callable(response.read):
-                png_bytes = response.read()
-            elif hasattr(response, 'content'):
-                png_bytes = response.content
-            else:
-                png_bytes = response
-                
-            ipy_display(Image(data=png_bytes))
-        except Exception as e:
-            print(f"Failed to display canvas: {e}")
-
-    async def display_async(self, id: str):
-        """
-        Asynchronously displays the visual Orchestration Canvas of the Persona inline within a Jupyter Notebook.
-        
-        Args:
-            id: The ID of the persona to display.
-        """
-        try:
-            from IPython.display import Image, display as ipy_display
-        except ImportError:
-            print("The .display_async() method requires an IPython/Jupyter environment.")
-            return
-
-        try:
-            # Call the asynchronous generated method
-            response = await self.get_persona_canvas_async(id=id)
-            
-            # Read the async stream
-            if hasattr(response, 'aread') and callable(response.aread):
-                png_bytes = await response.aread()
-            elif hasattr(response, 'read') and callable(response.read):
-                png_bytes = response.read()
-            elif hasattr(response, 'content'):
-                png_bytes = response.content
-            else:
-                png_bytes = response
-                
-            ipy_display(Image(data=png_bytes))
-        except Exception as e:
-            print(f"Failed to display canvas: {e}")

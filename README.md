@@ -179,6 +179,12 @@ asyncio.run(main())
 * [convert_model](docs/sdks/modelmanagement/README.md#convert_model) - Convert Model to CoreML
 * [pull_model](docs/sdks/modelmanagement/README.md#pull_model) - Download a model from Hugging Face
 
+### [ParserManagement](docs/sdks/parsermanagement/README.md)
+
+* [create_parser](docs/sdks/parsermanagement/README.md#create_parser) - Create a Javascript Parser
+* [list_parsers](docs/sdks/parsermanagement/README.md#list_parsers) - List all available Parsers
+* [test_parser](docs/sdks/parsermanagement/README.md#test_parser) - Test a Javascript Parser
+
 ### [PersonaOrchestration](docs/sdks/personaorchestration/README.md)
 
 * [create_persona](docs/sdks/personaorchestration/README.md#create_persona) - Create or Update a Persona

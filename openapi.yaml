@@ -264,7 +264,124 @@ paths:
           description: Persona or Plan not found
         '500':
           description: Internal Server Error
+# ADD THESE NEW PARSER ENDPOINTS
+  /api/v1/parsers:
+    post:
+      summary: Create a Javascript Parser
+      description: Provisions a new Javascript parser script for modifying inputs, outputs, and tool calls.
+      operationId: create_parser
+      tags:
+        - Parser Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - script
+              properties:
+                name:
+                  type: string
+                  description: The display name of the parser.
+                description:
+                  type: string
+                  nullable: true
+                  description: An optional description of what the parser does.
+                script:
+                  type: string
+                  description: The raw Javascript containing a `parse(rawInput)` function.
+                file_path:
+                  type: string
+                  nullable: true
+                  description: Optional filepath associated with this parser.
+      responses:
+        '200':
+          description: Parser successfully created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  script:
+                    type: string
+        '500':
+          description: Internal Server Error
 
+  /api/v1/parsers/test:
+    post:
+      summary: Test a Javascript Parser
+      description: Executes a Javascript parsing script statelessly to validate its output against a test input.
+      operationId: test_parser
+      tags:
+        - Parser Management
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - script
+                - raw_input
+              properties:
+                script:
+                  type: string
+                  description: The raw Javascript containing a `parse(rawInput)` function.
+                raw_input:
+                  type: string
+                  description: The raw string (usually JSON) to feed into the parser.
+      responses:
+        '200':
+          description: The parsed output and execution logs.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                  logs:
+                    type: array
+                    items:
+                      type: string
+        '500':
+          description: Internal Server Error
+
+  /parsers/list:
+    get:
+      summary: List all available Parsers
+      description: Retrieves a list of all provisioned Javascript parsers in the local database.
+      operationId: list_parsers
+      tags:
+        - Parser Management
+      responses:
+        '200':
+          description: Successful retrieval
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  parsers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                          nullable: true
+        '500':
+          description: Internal Server Error
   /pull:
     post:
       summary: Download a model from Hugging Face

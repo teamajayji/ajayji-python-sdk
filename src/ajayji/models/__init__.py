@@ -21,6 +21,12 @@ if TYPE_CHECKING:
         CreateDatabaseResponseBody,
         CreateDatabaseResponseBodyTypedDict,
     )
+    from .create_parserop import (
+        CreateParserRequestBody,
+        CreateParserRequestBodyTypedDict,
+        CreateParserResponseBody,
+        CreateParserResponseBodyTypedDict,
+    )
     from .create_personaop import (
         CreatePersonaRequestBody,
         CreatePersonaRequestBodyTypedDict,
@@ -43,6 +49,12 @@ if TYPE_CHECKING:
         InvokePersonaRequestTypedDict,
         InvokePersonaResponseBody,
         InvokePersonaResponseBodyTypedDict,
+    )
+    from .list_parsersop import (
+        ListParsersResponseBody,
+        ListParsersResponseBodyTypedDict,
+        Parsers,
+        ParsersTypedDict,
     )
     from .load_modelop import (
         LoadModelRequestBody,
@@ -67,6 +79,12 @@ if TYPE_CHECKING:
         PullModelResponseBodyTypedDict,
     )
     from .stop_modelop import StopModelResponseBody, StopModelResponseBodyTypedDict
+    from .test_parserop import (
+        TestParserRequestBody,
+        TestParserRequestBodyTypedDict,
+        TestParserResponseBody,
+        TestParserResponseBodyTypedDict,
+    )
 
 __all__ = [
     "AskRequestBody",
@@ -79,6 +97,10 @@ __all__ = [
     "CreateDatabaseRequestBodyTypedDict",
     "CreateDatabaseResponseBody",
     "CreateDatabaseResponseBodyTypedDict",
+    "CreateParserRequestBody",
+    "CreateParserRequestBodyTypedDict",
+    "CreateParserResponseBody",
+    "CreateParserResponseBodyTypedDict",
     "CreatePersonaRequestBody",
     "CreatePersonaRequestBodyTypedDict",
     "CreatePersonaResponseBody",
@@ -95,10 +117,14 @@ __all__ = [
     "InvokePersonaRequestTypedDict",
     "InvokePersonaResponseBody",
     "InvokePersonaResponseBodyTypedDict",
+    "ListParsersResponseBody",
+    "ListParsersResponseBodyTypedDict",
     "LoadModelRequestBody",
     "LoadModelRequestBodyTypedDict",
     "LoadModelResponseBody",
     "LoadModelResponseBodyTypedDict",
+    "Parsers",
+    "ParsersTypedDict",
     "PostAPIV1McpConnectRequestBody",
     "PostAPIV1McpConnectRequestBodyTypedDict",
     "PostAPIV1McpConnectResponseBody",
@@ -111,6 +137,10 @@ __all__ = [
     "PullModelResponseBodyTypedDict",
     "StopModelResponseBody",
     "StopModelResponseBodyTypedDict",
+    "TestParserRequestBody",
+    "TestParserRequestBodyTypedDict",
+    "TestParserResponseBody",
+    "TestParserResponseBodyTypedDict",
 ]
 
 _dynamic_imports: dict[str, str] = {
@@ -124,6 +154,10 @@ _dynamic_imports: dict[str, str] = {
     "CreateDatabaseRequestBodyTypedDict": ".create_databaseop",
     "CreateDatabaseResponseBody": ".create_databaseop",
     "CreateDatabaseResponseBodyTypedDict": ".create_databaseop",
+    "CreateParserRequestBody": ".create_parserop",
+    "CreateParserRequestBodyTypedDict": ".create_parserop",
+    "CreateParserResponseBody": ".create_parserop",
+    "CreateParserResponseBodyTypedDict": ".create_parserop",
     "CreatePersonaRequestBody": ".create_personaop",
     "CreatePersonaRequestBodyTypedDict": ".create_personaop",
     "CreatePersonaResponseBody": ".create_personaop",
@@ -140,6 +174,10 @@ _dynamic_imports: dict[str, str] = {
     "InvokePersonaRequestTypedDict": ".invoke_personaop",
     "InvokePersonaResponseBody": ".invoke_personaop",
     "InvokePersonaResponseBodyTypedDict": ".invoke_personaop",
+    "ListParsersResponseBody": ".list_parsersop",
+    "ListParsersResponseBodyTypedDict": ".list_parsersop",
+    "Parsers": ".list_parsersop",
+    "ParsersTypedDict": ".list_parsersop",
     "LoadModelRequestBody": ".load_modelop",
     "LoadModelRequestBodyTypedDict": ".load_modelop",
     "LoadModelResponseBody": ".load_modelop",
@@ -156,6 +194,10 @@ _dynamic_imports: dict[str, str] = {
     "PullModelResponseBodyTypedDict": ".pull_modelop",
     "StopModelResponseBody": ".stop_modelop",
     "StopModelResponseBodyTypedDict": ".stop_modelop",
+    "TestParserRequestBody": ".test_parserop",
+    "TestParserRequestBodyTypedDict": ".test_parserop",
+    "TestParserResponseBody": ".test_parserop",
+    "TestParserResponseBodyTypedDict": ".test_parserop",
 }
 
 
